@@ -1,6 +1,7 @@
 package cz.sima.msbank
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,10 +21,21 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_splash,
+                R.id.navigation_dashboard,
+                R.id.navigation_card,
+                R.id.navigation_settings
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    fun changeBottomNavVisibility(isVisible: Boolean) {
+        findViewById<BottomNavigationView>(R.id.nav_view).visibility = if (isVisible) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 }
