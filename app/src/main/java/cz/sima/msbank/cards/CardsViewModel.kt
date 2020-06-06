@@ -1,13 +1,8 @@
 package cz.sima.msbank.cards
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import cz.sima.msbank.base.BaseViewModel
 
-class CardsViewModel : ViewModel() {
+class CardsViewModel : BaseViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
+
 }
