@@ -1,12 +1,15 @@
 package cz.sima.msbank.feature.cards
 
+import cz.sima.msbank.utils.Validations
+import java.util.*
+
 /**
  * Created by Michal Šíma on 07.06.2020.
  */
 data class Card(
-    val id: String,
-    val number: String,
-    val cardType: CardType
+    val id: String = UUID.randomUUID().toString(),
+    val cardNumber: String,
+    val cardType: CardType = CardType.fromCardNumber(cardNumber)
 ) {
     companion object {
         fun getMockCards(): ArrayList<Card> {
@@ -17,10 +20,72 @@ data class Card(
             )
         }
     }
+
+    fun isCardValid(): Boolean {
+        return Validations.isCardNumberValid(cardNumber)
+    }
+
 }
 
 enum class CardType {
-    MASTER_CARD,
-    VISA,
-    AMERICAN_EXPRESS
+    MASTER_CARD {
+        override fun isCardType(cardNumber: String): Boolean {
+            return cardNumber.substring(0, 6).toInt() in 222100..272009 ||
+                    cardNumber.substring(0, 2).contains("5[1-5]")
+        }
+    },
+    MAESTRO {
+        override fun isCardType(cardNumber: String): Boolean {
+            val prefixes =
+                listOf("5018", "5020", "5038", "5893", "6304", "6759", "6761", "6762", "6763")
+            prefixes.forEach {
+                if (cardNumber.startsWith(it)) {
+                    return true
+                }
+            }
+            return false
+        }
+    },
+    VISA {
+        override fun isCardType(cardNumber: String): Boolean {
+            return cardNumber.startsWith("4")
+        }
+    },
+    AMERICAN_EXPRESS {
+        override fun isCardType(cardNumber: String): Boolean {
+            return cardNumber.substring(0, 2).contains("3[47]")
+        }
+    },
+    DISCOVER {
+        override fun isCardType(cardNumber: String): Boolean {
+            val prefixes =
+                listOf("6011", "644", "645", "646", "647", "648", "649", "65")
+            prefixes.forEach {
+                if (cardNumber.startsWith(it)) {
+                    return true
+                }
+            }
+            return cardNumber.substring(0, 6).toInt() in 622126..622925
+        }
+    },
+    INVALID,
+    UNKNOWN;
+
+    open fun isCardType(cardNumber: String): Boolean {
+        return false
+    }
+
+    companion object {
+        fun fromCardNumber(cardNumber: String): CardType {
+            if (!Validations.isCardNumberValid(cardNumber)) {
+                return INVALID
+            }
+            values().forEach {
+                if (it.isCardType(cardNumber)) {
+                    return it
+                }
+            }
+            return UNKNOWN
+        }
+    }
 }
