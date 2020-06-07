@@ -1,4 +1,4 @@
-package cz.sima.msbank.cards
+package cz.sima.msbank.feature.cards
 
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseVMFragment

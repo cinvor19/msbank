@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_splash"
-        android:name="cz.sima.msbank.splash.SplashFragment"
+        android:name="cz.sima.msbank.feature.splash.SplashFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_splash">
 
@@ -20,19 +20,19 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="cz.sima.msbank.settings.SettingsFragment"
+        android:name="cz.sima.msbank.feature.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="cz.sima.msbank.dashboard.DashboardFragment"
+        android:name="cz.sima.msbank.feature.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_card"
-        android:name="cz.sima.msbank.cards.CardsFragment"
+        android:name="cz.sima.msbank.feature.cards.CardsFragment"
         android:label="@string/title_cards"
         tools:layout="@layout/fragment_cards" />
 </navigation>

@@ -4,23 +4,24 @@
 
     <data>
 
+        <import type="cz.sima.msbank.R" />
+
         <variable
             name="vm"
-            type="cz.sima.msbank.cards.CardsViewModel" />
+            type="cz.sima.msbank.feature.cards.CardsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cards"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCards"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:items="@{vm.items}"
+            app:layoutId="@{R.layout.item_card}"
+            app:viewModel="@{vm}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

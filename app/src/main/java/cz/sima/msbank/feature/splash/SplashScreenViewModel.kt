@@ -1,4 +1,4 @@
-package cz.sima.msbank.splash
+package cz.sima.msbank.feature.splash
 
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseViewModel

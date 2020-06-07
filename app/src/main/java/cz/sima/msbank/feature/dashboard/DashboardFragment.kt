@@ -1,4 +1,4 @@
-package cz.sima.msbank.dashboard
+package cz.sima.msbank.feature.dashboard
 
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseVMFragment

@@ -6,10 +6,10 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import cz.sima.msbank.api.Api
 import cz.sima.msbank.api.NetConfig
-import cz.sima.msbank.cards.CardsViewModel
-import cz.sima.msbank.dashboard.DashboardViewModel
-import cz.sima.msbank.settings.SettingsViewModel
-import cz.sima.msbank.splash.SplashScreenViewModel
+import cz.sima.msbank.feature.cards.CardsViewModel
+import cz.sima.msbank.feature.dashboard.DashboardViewModel
+import cz.sima.msbank.feature.settings.SettingsViewModel
+import cz.sima.msbank.feature.splash.SplashScreenViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext

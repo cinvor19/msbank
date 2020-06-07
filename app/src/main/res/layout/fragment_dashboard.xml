@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="cz.sima.msbank.dashboard.DashboardViewModel" />
+            type="cz.sima.msbank.feature.dashboard.DashboardViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

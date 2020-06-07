@@ -1,4 +1,4 @@
-package cz.sima.msbank.settings
+package cz.sima.msbank.feature.settings
 
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseVMFragment
