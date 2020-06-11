@@ -31,7 +31,7 @@ enum class CardType {
     MASTER_CARD {
         override fun isCardType(cardNumber: String): Boolean {
             return cardNumber.substring(0, 6).toInt() in 222100..272009 ||
-                    cardNumber.substring(0, 2).contains("5[1-5]")
+                    cardNumber.substring(0, 2).toInt() in 51..55
         }
     },
     MAESTRO {
@@ -66,6 +66,11 @@ enum class CardType {
                 }
             }
             return cardNumber.substring(0, 6).toInt() in 622126..622925
+        }
+    },
+    JCB {
+        override fun isCardType(cardNumber: String): Boolean {
+            return cardNumber.substring(0, 4).toInt() in 3528..3589
         }
     },
     INVALID,

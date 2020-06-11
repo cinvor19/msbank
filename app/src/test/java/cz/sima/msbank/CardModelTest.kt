@@ -21,7 +21,11 @@ class CardModelTest {
         Assert.assertEquals(true, Validations.isCardNumberValid("4929894357589478"))
         Assert.assertEquals(true, Validations.isCardNumberValid("4485208851861612"))
         Assert.assertEquals(true, Validations.isCardNumberValid("2720999371095595"))
+        Assert.assertEquals(false, Validations.isCardNumberValid("2720-999371095595"))
+        Assert.assertEquals(false, Validations.isCardNumberValid("2720-99371095595"))
         Assert.assertEquals(true, Validations.isCardNumberValid("2720991345309848"))
+        Assert.assertEquals(false, Validations.isCardNumberValid("2720991345309849"))
+        Assert.assertEquals(false, Validations.isCardNumberValid("2720991345309847"))
         Assert.assertEquals(true, Validations.isCardNumberValid("2720 9913 4530 9848"))
         Assert.assertEquals(true, Validations.isCardNumberValid("  2 7 20 9913   45 309 84 8"))
     }
