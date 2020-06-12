@@ -1,13 +1,21 @@
 package cz.sima.msbank.feature.cards
 
-import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import cz.sima.msbank.base.BaseViewModel
 
 class CardsViewModel : BaseViewModel() {
 
-    val items = ObservableArrayList<Card>()
+    private val cartItems: MutableLiveData<List<Card>> = MutableLiveData()
 
-    init {
-        items.addAll(Card.getMockCards())
+    fun getCartItems(): LiveData<List<Card>> = cartItems
+
+
+    fun fetchData() {
+        cartItems.value = Card.getMockCards()
+    }
+
+    fun onCardItemClicked() {
+        cartItems.value = Card.getMockCards().reversed()
     }
 }

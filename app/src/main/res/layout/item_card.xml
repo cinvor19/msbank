@@ -13,22 +13,20 @@
             name="vm"
             type="cz.sima.msbank.feature.cards.CardsViewModel" />
 
-        <variable
-            name="lifecycle"
-            type="androidx.lifecycle.LifecycleOwner" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->vm.onCardItemClicked()}">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtCardNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{item.cardNumber}"
             android:background="@color/colorAccent"
+            android:padding="16dp"
+            android:text="@{item.cardNumber}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

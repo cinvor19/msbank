@@ -8,16 +8,8 @@
             type="java.lang.Object" />
 
         <variable
-            name="parentItem"
-            type="Object" />
-
-        <variable
             name="vm"
             type="cz.sima.msbank.base.BaseRecyclerAdapter" />
-
-        <variable
-            name="lifecycle"
-            type="androidx.lifecycle.LifecycleOwner" />
 
     </data>
 
@@ -27,4 +19,3 @@
         android:orientation="vertical" />
 
 </layout>
-

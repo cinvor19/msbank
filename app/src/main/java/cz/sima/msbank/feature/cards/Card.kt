@@ -1,5 +1,6 @@
 package cz.sima.msbank.feature.cards
 
+import androidx.recyclerview.widget.DiffUtil
 import cz.sima.msbank.utils.Validations
 import java.util.*
 
@@ -12,8 +13,8 @@ data class Card(
     val cardType: CardType = CardType.fromCardNumber(cardNumber)
 ) {
     companion object {
-        fun getMockCards(): ArrayList<Card> {
-            return arrayListOf(
+        fun getMockCards(): List<Card> {
+            return listOf(
                 Card("1", "1111222233334444", CardType.MASTER_CARD),
                 Card("2", "1234123412341234", CardType.VISA),
                 Card("3", "1122334411223344", CardType.AMERICAN_EXPRESS)
@@ -25,6 +26,17 @@ data class Card(
         return Validations.isCardNumberValid(cardNumber)
     }
 
+}
+
+class CardItemDiffCallback : DiffUtil.ItemCallback<Card>() {
+    override fun areItemsTheSame(oldItem: Card, newItem: Card): Boolean {
+        return oldItem.cardNumber == newItem.cardNumber
+                && oldItem.cardType == newItem.cardType
+    }
+
+    override fun areContentsTheSame(oldItem: Card, newItem: Card): Boolean {
+        return oldItem.id == newItem.id
+    }
 }
 
 enum class CardType {
