@@ -8,6 +8,7 @@ import cz.sima.msbank.api.Api
 import cz.sima.msbank.api.NetConfig
 import cz.sima.msbank.feature.cards.CardsViewModel
 import cz.sima.msbank.feature.dashboard.DashboardViewModel
+import cz.sima.msbank.feature.pin.PinViewModel
 import cz.sima.msbank.feature.settings.SettingsViewModel
 import cz.sima.msbank.feature.splash.SplashScreenViewModel
 import okhttp3.OkHttpClient
@@ -26,6 +27,7 @@ val viewModelModule = module {
     viewModel { DashboardViewModel() }
     viewModel { CardsViewModel() }
     viewModel { SettingsViewModel() }
+    viewModel { PinViewModel() }
 
 }
 

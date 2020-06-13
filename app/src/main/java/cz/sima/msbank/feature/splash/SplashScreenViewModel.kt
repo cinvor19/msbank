@@ -9,6 +9,6 @@ import cz.sima.msbank.base.BaseViewModel
 class SplashScreenViewModel : BaseViewModel() {
 
     fun onBtnClicked() {
-        navigate(R.id.action_fragment_splash_to_navigation_dashboard)
+        navigate(R.id.action_navigation_splash_to_pinFragment)
     }
 }
