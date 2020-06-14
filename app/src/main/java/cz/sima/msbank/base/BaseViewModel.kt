@@ -2,21 +2,24 @@ package cz.sima.msbank.base
 
 import android.os.Bundle
 import androidx.annotation.IdRes
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
+import cz.sima.msbank.event.AnySingleLiveEvent
 import cz.sima.msbank.event.LiveEvent
 import cz.sima.msbank.event.LiveEventMap
 import cz.sima.msbank.event.NavigationEvent
+import cz.sima.msbank.feature.cards.Card
 import kotlin.reflect.KClass
 
 /**
  * Created by Michal Šíma on 06.06.2020.
  */
 open class BaseViewModel : ViewModel(), LifecycleObserver {
+
+    protected val showTodoToast: AnySingleLiveEvent = AnySingleLiveEvent()
+
+    fun getShowTodoToast(): LiveData<Any> = showTodoToast
 
     private val liveEventMap = LiveEventMap()
 

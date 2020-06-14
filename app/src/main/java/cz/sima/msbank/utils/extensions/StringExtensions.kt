@@ -10,3 +10,11 @@ fun String.prependWithCharToLength(char: Char, length: Int): String {
     }
     return builder.toString()
 }
+
+fun String.cutLastChar(): String {
+    return if (this.isNotEmpty()) {
+        this.substring(0, this.length - 1)
+    } else {
+        ""
+    }
+}

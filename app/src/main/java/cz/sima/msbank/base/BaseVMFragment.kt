@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -69,8 +70,15 @@ abstract class BaseVMFragment<B : ViewDataBinding, VM : BaseViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         (activity as? MainActivity)?.changeBottomNavVisibility(hasBottomNav())
+
+        observe(viewModel.getShowTodoToast()){
+            showTodoToast()
+        }
+    }
+
+    private fun showTodoToast() {
+        Toast.makeText(context, "Work in progress", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {

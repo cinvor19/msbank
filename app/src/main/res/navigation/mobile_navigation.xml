@@ -12,7 +12,20 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_navigation_splash_to_pinFragment"
-            app:destination="@id/pinFragment" />
+            app:popUpTo="@id/navigation_splash"
+            app:popUpToInclusive="true"
+            app:destination="@id/navigation_pin" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pin"
+        android:name="cz.sima.msbank.feature.pin.PinFragment"
+        android:label="PinFragment" >
+        <action
+            android:id="@+id/action_pinFragment_to_navigation_dashboard"
+            app:popUpTo="@id/navigation_pin"
+            app:popUpToInclusive="true"
+            app:destination="@id/navigation_dashboard" />
     </fragment>
 
     <fragment
@@ -32,12 +45,5 @@
         android:name="cz.sima.msbank.feature.cards.CardsFragment"
         android:label="@string/title_cards"
         tools:layout="@layout/fragment_cards" />
-    <fragment
-        android:id="@+id/pinFragment"
-        android:name="cz.sima.msbank.feature.pin.PinFragment"
-        android:label="PinFragment" >
-        <action
-            android:id="@+id/action_pinFragment_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
-    </fragment>
+
 </navigation>

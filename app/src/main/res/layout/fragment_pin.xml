@@ -13,125 +13,210 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{()->vm.onBtnClicked()}"
-            android:text="Hola hej"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <View
+            android:id="@+id/pin_digit_1"
+            style="@style/pin_digit"
+            android:checked="true"
+            android:background="@{vm.pin.length() > 0 ? @drawable/ic_circle_accent : @drawable/ic_circle_grey}"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline_top_keyboard"
+            app:layout_constraintEnd_toStartOf="@+id/pin_digit_2"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/pin_digit_2"
+            style="@style/pin_digit"
+            android:background="@{vm.pin.length() > 1 ? @drawable/ic_circle_accent : @drawable/ic_circle_grey}"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline_top_keyboard"
+            app:layout_constraintEnd_toStartOf="@+id/pin_digit_3"
+            app:layout_constraintStart_toEndOf="@+id/pin_digit_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/pin_digit_3"
+            style="@style/pin_digit"
+            android:background="@{vm.pin.length() > 2 ? @drawable/ic_circle_accent : @drawable/ic_circle_grey}"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline_top_keyboard"
+            app:layout_constraintEnd_toStartOf="@+id/pin_digit_4"
+            app:layout_constraintStart_toEndOf="@+id/pin_digit_2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/pin_digit_4"
+            style="@style/pin_digit"
+            android:background="@{vm.pin.length() > 3 ? @drawable/ic_circle_accent : @drawable/ic_circle_grey}"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline_top_keyboard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pin_digit_3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top_keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <View
+            style="@style/separator_horizontal.accent"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn1" />
+
+        <View
+            style="@style/separator_horizontal.accent"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn4" />
+
+        <View
+            style="@style/separator_horizontal.accent"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn7" />
+
+        <View
+            style="@style/separator_horizontal.accent"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_biometrics" />
+
+        <View
+            style="@style/separator_vertical.accent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/btn1"
+            app:layout_constraintTop_toTopOf="@+id/btn1" />
+
+        <View
+            style="@style/separator_vertical.accent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/btn2"
+            app:layout_constraintTop_toTopOf="@+id/btn1" />
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
             android:text="1"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn2" />
+            app:layout_constraintBottom_toTopOf="@+id/btn4"
+            app:layout_constraintEnd_toStartOf="@+id/btn2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_top_keyboard" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
             android:text="2"
-            app:layout_constraintStart_toEndOf="@+id/btn1"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn5"
             app:layout_constraintEnd_toStartOf="@+id/btn3"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/btn1"
+            app:layout_constraintTop_toTopOf="@+id/guideline_top_keyboard" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
             android:text="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn2"
+            app:layout_constraintTop_toTopOf="@+id/guideline_top_keyboard" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn4"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
+            android:text="4"
+            app:layout_constraintBottom_toTopOf="@+id/btn7"
+            app:layout_constraintEnd_toStartOf="@+id/btn5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn5"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
+            android:text="5"
+            app:layout_constraintBottom_toTopOf="@+id/btn8"
+            app:layout_constraintEnd_toStartOf="@+id/btn6"
+            app:layout_constraintStart_toEndOf="@+id/btn4"
+            app:layout_constraintTop_toBottomOf="@+id/btn2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn6"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
+            android:text="6"
+            app:layout_constraintBottom_toTopOf="@+id/btn9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn5"
+            app:layout_constraintTop_toBottomOf="@+id/btn3" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn7"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
+            android:text="7"
+            app:layout_constraintBottom_toTopOf="@+id/btn_biometrics"
+            app:layout_constraintEnd_toStartOf="@+id/btn8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn4" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn8"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
+            android:text="8"
+            app:layout_constraintBottom_toTopOf="@+id/btn0"
+            app:layout_constraintEnd_toStartOf="@+id/btn9"
+            app:layout_constraintStart_toEndOf="@+id/btn7"
+            app:layout_constraintTop_toBottomOf="@+id/btn5" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn9"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
+            android:text="9"
+            app:layout_constraintBottom_toTopOf="@+id/btn_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn8"
+            app:layout_constraintTop_toBottomOf="@+id/btn6" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_biometrics"
+            style="@style/keyboard_button"
+            android:onClick="@{()-> vm.onBiometricsClicked()}"
+            app:icon="@drawable/ic_fingerprint_36dp"
+            app:iconGravity="textStart"
+            app:iconTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/btn0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn7" />
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn4"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="4"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn1" />-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn0"
+            style="@style/keyboard_button"
+            android:onClick="@{(view)-> vm.onKeyboardClicked(view)}"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+            app:layout_constraintStart_toEndOf="@+id/btn_biometrics"
+            app:layout_constraintTop_toBottomOf="@+id/btn8" />
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn5"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="5"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/btn4"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn2" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn6"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="6"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/btn5"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn3" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn7"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="7"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn4" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn8"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="8"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/btn7"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn5" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn9"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="9"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/btn8"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn6" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn_biometrics"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="B"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn7" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn0"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="0"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/btn_biometrics"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn8" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btn_delete"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:text="D"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/btn0"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn9" />-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete"
+            style="@style/keyboard_button"
+            android:onClick="@{()-> vm.onEraseClicked()}"
+            app:icon="@drawable/ic_backspace_24dp"
+            app:iconGravity="textStart"
+            app:iconTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn0"
+            app:layout_constraintTop_toBottomOf="@+id/btn9" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

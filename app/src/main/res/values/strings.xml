@@ -4,4 +4,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_cards">Cards</string>
     <string name="confirm">Confirm</string>
+
+
+    <!-- Pin -->
+    <string name="pin_invalid">Pin does not match, please try again</string>
 </resources>
