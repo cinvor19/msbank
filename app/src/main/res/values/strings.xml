@@ -5,6 +5,14 @@
     <string name="title_cards">Cards</string>
     <string name="confirm">Confirm</string>
 
+    <!-- Pin -->
+    <string name="loading_view_default_error">Unexpected error occurred, sorry :).</string>
+    <string name="loading_view_default_reload">Try again</string>
+    <string name="loading_view_default_empty">Nothing to see here…</string>
+
+    <string name="loading_view_default_error_client_error">Something wrong happened on client side.</string>
+    <string name="loading_view_default_error_server_error">Something wrong happened on server side.</string>
+    <string name="loading_view_default_error_no_internet">Check your internet connection.</string>
 
     <!-- Pin -->
     <string name="pin_invalid">Pin does not match, please try again</string>
