@@ -3,7 +3,6 @@ package cz.sima.msbank.feature.cards
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseVMFragment
 import cz.sima.msbank.databinding.FragmentCardsBinding
@@ -15,15 +14,13 @@ class CardsFragment : BaseVMFragment<FragmentCardsBinding, CardsViewModel>(Cards
 
     override fun hasBottomNav() = true
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initRecycler()
         viewModel.fetchData()
     }
 
-    private fun initRecycler(){
+    private fun initRecycler() {
         val adapter = CardAdapter(viewModel)
         recyclerCards.layoutManager = LinearLayoutManager(context)
 
@@ -33,5 +30,4 @@ class CardsFragment : BaseVMFragment<FragmentCardsBinding, CardsViewModel>(Cards
             adapter.submitList(it)
         }
     }
-
 }

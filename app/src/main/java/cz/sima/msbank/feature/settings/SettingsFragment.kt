@@ -10,5 +10,4 @@ class SettingsFragment :
     override fun getLayoutId() = R.layout.fragment_settings
 
     override fun hasBottomNav() = true
-
 }

@@ -7,6 +7,7 @@ import com.google.android.material.button.MaterialButton
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseViewModel
 import cz.sima.msbank.event.AnySingleLiveEvent
+import cz.sima.msbank.utils.Constants
 import cz.sima.msbank.utils.extensions.cutLastChar
 
 /**
@@ -19,18 +20,11 @@ class PinViewModel : BaseViewModel() {
     private val showPinError: AnySingleLiveEvent = AnySingleLiveEvent()
 
     fun getShowPinError(): LiveData<Any> = showPinError
-
-    fun onBtnClicked() {
-
-    }
-
     fun onKeyboardClicked(view: View) {
-        var tmpPin = pin.value
-
-
+        val tmpPin = pin.value
         with(view as? MaterialButton) {
 
-            if (tmpPin?.length == 4) {
+            if (tmpPin?.length == Constants.PIN_LENGTH) {
                 return
             }
             pin.value = tmpPin + this?.text
@@ -40,7 +34,7 @@ class PinViewModel : BaseViewModel() {
     }
 
     private fun checkPinCompleteness() {
-        if (pin.value?.length == 4) {
+        if (pin.value?.length == Constants.PIN_LENGTH) {
             checkPinValid()
         }
     }
@@ -55,7 +49,7 @@ class PinViewModel : BaseViewModel() {
     }
 
     fun onEraseClicked() {
-        var tmpPin = pin.value
+        val tmpPin = pin.value
         pin.value = tmpPin?.cutLastChar()
     }
 

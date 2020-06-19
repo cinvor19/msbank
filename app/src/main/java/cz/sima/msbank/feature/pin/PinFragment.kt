@@ -21,10 +21,9 @@ class PinFragment : BaseVMFragment<FragmentPinBinding, PinViewModel>(PinViewMode
         initObservers()
     }
 
-    fun initObservers() {
+    private fun initObservers() {
         observe(viewModel.getShowPinError()) {
             showSnackBar(R.string.pin_invalid)
         }
     }
-
 }

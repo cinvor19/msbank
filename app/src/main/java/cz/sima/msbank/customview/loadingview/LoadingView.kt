@@ -39,7 +39,7 @@ class LoadingView @JvmOverloads constructor(
     private val textErrorMessage: TextView?
     private val buttonErrorReload: View?
 
-    var throwableToErrorMapping: ((Throwable) -> String)? = {
+    private var throwableToErrorMapping: ((Throwable) -> String)? = {
         val stringResId = when {
             it is HttpException && it.code() >= 500 -> R.string.loading_view_default_error_server_error
             it is HttpException && it.code() < 500 -> R.string.loading_view_default_error_client_error

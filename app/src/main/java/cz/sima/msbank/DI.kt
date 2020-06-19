@@ -28,7 +28,6 @@ val viewModelModule = module {
     viewModel { CardsViewModel() }
     viewModel { SettingsViewModel() }
     viewModel { PinViewModel() }
-
 }
 
 val repositoryModule = module {

@@ -9,8 +9,6 @@ class CardsViewModel : BaseViewModel() {
     private val cartItems: MutableLiveData<List<Card>> = MutableLiveData()
 
     fun getCartItems(): LiveData<List<Card>> = cartItems
-
-
     fun fetchData() {
         cartItems.value = Card.getMockCards()
     }

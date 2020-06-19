@@ -2,14 +2,17 @@ package cz.sima.msbank.base
 
 import android.os.Bundle
 import androidx.annotation.IdRes
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import cz.sima.msbank.event.AnySingleLiveEvent
 import cz.sima.msbank.event.LiveEvent
 import cz.sima.msbank.event.LiveEventMap
 import cz.sima.msbank.event.NavigationEvent
-import cz.sima.msbank.feature.cards.Card
 import kotlin.reflect.KClass
 
 /**
@@ -34,7 +37,6 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     fun <T : LiveEvent> publish(event: T) {
         liveEventMap.publish(event)
     }
-
 
     protected fun navigate(
         @IdRes resId: Int,

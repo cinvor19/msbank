@@ -16,6 +16,5 @@ class CardAdapter(parentViewModel: CardsViewModel) :
         return CardViewHolder(getViewDataBinding(parent, R.layout.item_card))
     }
 
-
     inner class CardViewHolder(binding: ViewDataBinding) : DataBindingViewHolder<Card>(binding)
 }

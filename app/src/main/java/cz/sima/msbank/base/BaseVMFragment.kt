@@ -72,7 +72,7 @@ abstract class BaseVMFragment<B : ViewDataBinding, VM : BaseViewModel>(
 
         (activity as? MainActivity)?.changeBottomNavVisibility(hasBottomNav())
 
-        observe(viewModel.getShowTodoToast()){
+        observe(viewModel.getShowTodoToast()) {
             showTodoToast()
         }
     }
@@ -147,5 +147,4 @@ abstract class BaseVMFragment<B : ViewDataBinding, VM : BaseViewModel>(
             }
         })
     }
-
 }

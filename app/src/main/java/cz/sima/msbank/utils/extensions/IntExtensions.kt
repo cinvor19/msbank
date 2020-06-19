@@ -20,6 +20,5 @@ fun Int.countDigitRoot(): Int {
         digits.add(tmpNumber % 10)
         tmpNumber /= 10
     }
-
     return digits.sum()
 }

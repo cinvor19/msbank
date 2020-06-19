@@ -23,7 +23,6 @@ class LiveEventMap {
         liveEvent.observe(lifecycleOwner, eventObserver)
     }
 
-
     fun <T : LiveEvent> publish(event: T) {
         var liveEvent: SingleLiveEvent<T>? = events[event::class] as SingleLiveEvent<T>?
         if (liveEvent == null) {

@@ -4,6 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_cards">Cards</string>
     <string name="confirm">Confirm</string>
+    <string name="continue_string">Continue</string>
 
     <!-- Pin -->
     <string name="loading_view_default_error">Unexpected error occurred, sorry :).</string>
@@ -14,6 +15,6 @@
     <string name="loading_view_default_error_server_error">Something wrong happened on server side.</string>
     <string name="loading_view_default_error_no_internet">Check your internet connection.</string>
 
-    <!-- Pin -->
+
     <string name="pin_invalid">Pin does not match, please try again</string>
 </resources>

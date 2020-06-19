@@ -134,9 +134,7 @@ object Validations {
         return sumPrefix % 11 == 0 && sumNumber % 11 == 0
     }
 
-
     private fun containsNonDigits(list: List<Int>): Boolean {
-
         // If containing -1 or -2 -> number contains non digit char (see Character::getNumericValue)
         return list.containsAll(listOf(-1, -2))
     }

@@ -7,7 +7,6 @@ import org.koin.core.context.startKoin
 /**
  * Created by Michal Šíma on 06.06.2020.
  */
-@SuppressWarnings("unused")
 class App : Application() {
     companion object {
         lateinit var instance: App private set

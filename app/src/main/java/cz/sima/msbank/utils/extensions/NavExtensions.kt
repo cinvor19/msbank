@@ -6,7 +6,6 @@ import cz.sima.msbank.event.NavigationEvent
 /**
  * Created by Michal Šíma on 06.06.2020.
  */
-
 fun NavController.navigate(navEvent: NavigationEvent) {
     navEvent.resId?.let {
         navigate(it, navEvent.navArgs, navEvent.navOptions)

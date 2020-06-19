@@ -12,10 +12,8 @@ data class BankAccount(
     val number: String = "",
     val bankCode: String = ""
 ) {
-
-
     fun toFormattedString(): String {
-        var stringBuilder = StringBuilder()
+        val stringBuilder = StringBuilder()
 
         if (prefix.isNotEmpty()) {
             stringBuilder

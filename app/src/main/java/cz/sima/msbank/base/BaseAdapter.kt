@@ -3,7 +3,10 @@ package cz.sima.msbank.base
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.*
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.PluralsRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -47,7 +50,7 @@ abstract class BaseRecyclerAdapter<T>(
             return@setOnLongClickListener onItemLongClickAction?.invoke(data) ?: false
         }
 
-        viewHolder.bindTo(data,parentViewModel)
+        viewHolder.bindTo(data, parentViewModel)
     }
 
     override fun submitList(list: List<T>?) {
