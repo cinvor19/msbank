@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="cz.sima.msbank.feature.dashboard.DashboardViewModel" />
+            type="cz.sima.msbank.feature.payment.PaymentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,23 +16,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dashboard"
+            android:text="Payment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_pay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_material_2x"
-            android:backgroundTint="@color/colorAccent"
-            android:onClick="@{()->vm.onFabButtonClick()}"
-            app:borderWidth="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_dollar_24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
