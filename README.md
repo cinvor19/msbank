@@ -41,6 +41,7 @@ I am aware that some logic in the application would not be required in the real 
 I am a developer specialized in Android platform with 5 years of experience with analytic background. I have experience with solving individual projects and also cooperation in larger teams. I worked on projects in financial sector for more than 2 years, I also participated on projects with retail specialization and last but not least I have experience with analysing business process for Oil and Gas company.
 
 📱  +420 736 102 488
-📧 michalsima92@gmail.com
+📧 [michalsima92@gmail.com](mailto:michalsima92@gmail.com)
+🌐 [LinkedIn](https://www.linkedin.com/in/michalsima92/)
 
-[Michal Šíma](https://www.linkedin.com/in/michalsima92/)
+Michal Šíma
