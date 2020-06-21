@@ -16,6 +16,7 @@ object Validations {
         Pair("0100", "Komerční banka, a.s."),
         Pair("0300", "ČSOB, a.s."),
         Pair("0600", "MONETA Money Bank, a.s."),
+        Pair("0666", "MS Bank, a.s."),
         Pair("0710", "Česká národní banka"),
         Pair("0800", "Česká spořitelna, a.s."),
         Pair("2010", "Fio banka, a.s."),

@@ -22,9 +22,9 @@ class CardsFragment : BaseVMFragment<FragmentCardsBinding, CardsViewModel>(Cards
 
     private fun initRecycler() {
         val adapter = CardAdapter(viewModel)
-        recyclerCards.layoutManager = LinearLayoutManager(context)
+        recycler_cards.layoutManager = LinearLayoutManager(context)
 
-        recyclerCards.adapter = adapter
+        recycler_cards.adapter = adapter
 
         observe(viewModel.getCartItems()) {
             adapter.submitList(it)
