@@ -1,6 +1,7 @@
 package cz.sima.msbank.base
 
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.IdRes
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -13,6 +14,12 @@ import cz.sima.msbank.event.AnySingleLiveEvent
 import cz.sima.msbank.event.LiveEvent
 import cz.sima.msbank.event.LiveEventMap
 import cz.sima.msbank.event.NavigationEvent
+import cz.sima.msbank.utils.extensions.applySchedulers
+import io.reactivex.Completable
+import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import kotlin.reflect.KClass
 
 /**
@@ -37,6 +44,55 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     fun <T : LiveEvent> publish(event: T) {
         liveEventMap.publish(event)
     }
+
+
+    fun <T> subscribe(
+        single: Single<T>,
+        success: (T) -> Unit = { logEvent("Success item in $single: $it") },
+        error: (Throwable) -> Unit = { logEvent("Error in $single: ${it.message}") }
+    )
+            : Disposable {
+
+        return single
+            .applySchedulers()
+            .subscribe(success, error)
+    }
+
+    fun subscribe(
+        completable: Completable,
+        complete: () -> Unit = { logEvent("OnComplete in $completable") },
+        error: (Throwable) -> Unit = { logEvent("Error in $completable: ${it.message}") }
+    )
+            : Disposable {
+        return completable
+            .applySchedulers()
+            .subscribe(complete, error)
+    }
+
+    fun <T> subscribe(
+        observable: Observable<T>,
+        next: (T) -> Unit = { logEvent("Next item in $observable: $it") },
+        error: (Throwable) -> Unit = { logEvent("Error in $observable: ${it.message}") }
+    )
+            : Disposable {
+        return observable
+            .applySchedulers()
+            .subscribe(next, error)
+    }
+
+    fun <T> subscribe(
+        flowable: Flowable<T>,
+        next: (T) -> Unit = { logEvent("Next item in $flowable: $it") },
+        error: (Throwable) -> Unit = { logEvent("Error in $flowable: ${it.message}") }
+    )
+            : Disposable {
+        return flowable
+            .applySchedulers()
+            .subscribe(next, error)
+    }
+
+    private fun logEvent(logMsg: String) = Log.d("BaseVM RxEvent", logMsg)
+
 
     protected fun navigate(
         @IdRes resId: Int,

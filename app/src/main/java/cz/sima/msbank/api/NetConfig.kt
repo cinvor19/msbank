@@ -5,5 +5,5 @@ package cz.sima.msbank.api
  */
 object NetConfig {
 
-    const val BASE_URL = "www.url.com/"
+    const val BASE_URL = "https://private-8f25e-msbank.apiary-mock.com/"
 }

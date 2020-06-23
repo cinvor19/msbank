@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseViewModel
+import cz.sima.msbank.customview.loadingview.Error
+import cz.sima.msbank.customview.loadingview.Loading
+import cz.sima.msbank.customview.loadingview.LoadingState
+import cz.sima.msbank.customview.loadingview.Normal
 import cz.sima.msbank.feature.cards.Card
 import cz.sima.msbank.feature.cards.CardType
 import cz.sima.msbank.feature.dashboard.model.DashBoardAccount
@@ -14,13 +18,25 @@ import cz.sima.msbank.feature.dashboard.model.DashBoardPromo
 import cz.sima.msbank.shared.BankAccount
 import java.math.BigDecimal
 
-class DashboardViewModel : BaseViewModel() {
+class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) : BaseViewModel() {
 
     private val dashBoardItems: MutableLiveData<List<DashBoardItem>> = MutableLiveData()
+    private val loadingState: MutableLiveData<LoadingState> = MutableLiveData(Loading)
 
     fun getDashBoardItems(): LiveData<List<DashBoardItem>> = dashBoardItems
+    fun getLoadingState(): LiveData<LoadingState> = loadingState
+
     fun fetchData() {
-        dashBoardItems.value = mockItems()
+
+        loadingState.value = Loading
+        subscribe(dashBoardRepository.getAny(),
+            {
+                loadingState.value = Normal
+                dashBoardItems.value = mockItems()
+            },
+            {
+                loadingState.value = Error(it)
+            })
     }
 
     private fun mockItems(): List<DashBoardItem> {

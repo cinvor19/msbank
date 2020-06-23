@@ -4,9 +4,10 @@ import android.content.Context
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import cz.sima.msbank.api.Api
+import cz.sima.msbank.api.ApiService
 import cz.sima.msbank.api.NetConfig
 import cz.sima.msbank.feature.cards.CardsViewModel
+import cz.sima.msbank.feature.dashboard.DashBoardRepository
 import cz.sima.msbank.feature.dashboard.DashboardViewModel
 import cz.sima.msbank.feature.payment.PaymentViewModel
 import cz.sima.msbank.feature.pin.PinViewModel
@@ -18,6 +19,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
@@ -25,7 +27,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 val viewModelModule = module {
     viewModel { SplashScreenViewModel() }
-    viewModel { DashboardViewModel() }
+    viewModel { DashboardViewModel(get()) }
     viewModel { CardsViewModel() }
     viewModel { SettingsViewModel() }
     viewModel { PinViewModel() }
@@ -33,7 +35,7 @@ val viewModelModule = module {
 }
 
 val repositoryModule = module {
-    // TODO repository, modules
+    single<DashBoardRepository> { DashBoardRepository(get()) }
 }
 
 val apiModule = module {
@@ -41,7 +43,7 @@ val apiModule = module {
     single { provideRetrofit(get()) }
 
     // API
-    single { provideApi(get(), Api::class.java) }
+    single { provideApi(get(), ApiService::class.java) }
 }
 
 private fun provideOkHttpClient(context: Context): OkHttpClient {
@@ -58,6 +60,7 @@ private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl(NetConfig.BASE_URL)
+         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         // .addCallAdapterFactory(CoroutineCallAdapterFactory()) // TODO add when using Coroutines
         .addConverterFactory(
             MoshiConverterFactory.create(
