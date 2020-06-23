@@ -7,6 +7,7 @@ import cz.sima.msbank.feature.dashboard.model.DashBoardCreditCard
 import cz.sima.msbank.feature.dashboard.model.DashBoardItem
 import cz.sima.msbank.feature.dashboard.model.DashBoardPromo
 import io.reactivex.Single
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Michal Šíma on 23.06.2020.
