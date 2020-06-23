@@ -50,12 +50,8 @@ enum class CardType {
         override fun isCardType(cardNumber: String): Boolean {
             val prefixes =
                 listOf("5018", "5020", "5038", "5893", "6304", "6759", "6761", "6762", "6763")
-            prefixes.forEach {
-                if (cardNumber.startsWith(it)) {
-                    return true
-                }
-            }
-            return false
+            return prefixes.any { cardNumber.startsWith(it) }
+
         }
     },
     VISA {
@@ -72,12 +68,8 @@ enum class CardType {
         override fun isCardType(cardNumber: String): Boolean {
             val prefixes =
                 listOf("6011", "644", "645", "646", "647", "648", "649", "65")
-            prefixes.forEach {
-                if (cardNumber.startsWith(it)) {
-                    return true
-                }
-            }
-            return cardNumber.substring(0, 6).toInt() in 622126..622925
+            return prefixes.any { cardNumber.startsWith(it) } ||
+                    cardNumber.substring(0, 6).toInt() in 622126..622925
         }
     },
     JCB {
