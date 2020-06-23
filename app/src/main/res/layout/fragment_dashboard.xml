@@ -20,7 +20,6 @@
             android:layout_height="match_parent"
             app:state="@{vm.getLoadingState()}">
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_dashboards"
                 android:layout_width="match_parent"

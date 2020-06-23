@@ -45,7 +45,6 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         liveEventMap.publish(event)
     }
 
-
     fun <T> subscribe(
         single: Single<T>,
         success: (T) -> Unit = { logEvent("Success item in $single: $it") },
@@ -55,6 +54,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
         return single
             .applySchedulers()
+            .doOnError { it.printStackTrace() }
             .subscribe(success, error)
     }
 
@@ -66,6 +66,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
             : Disposable {
         return completable
             .applySchedulers()
+            .doOnError { it.printStackTrace() }
             .subscribe(complete, error)
     }
 
@@ -77,6 +78,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
             : Disposable {
         return observable
             .applySchedulers()
+            .doOnError { it.printStackTrace() }
             .subscribe(next, error)
     }
 
@@ -88,11 +90,11 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
             : Disposable {
         return flowable
             .applySchedulers()
+            .doOnError { it.printStackTrace() }
             .subscribe(next, error)
     }
 
     private fun logEvent(logMsg: String) = Log.d("BaseVM RxEvent", logMsg)
-
 
     protected fun navigate(
         @IdRes resId: Int,

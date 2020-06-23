@@ -1,6 +1,7 @@
 package cz.sima.msbank.api
 
 import io.reactivex.Completable
+import io.reactivex.Single
 import retrofit2.http.GET
 
 /**
@@ -8,7 +9,7 @@ import retrofit2.http.GET
  */
 interface ApiService {
 
-    @GET("questions")
-    fun getAny(): Completable
+    @GET("dashboard")
+    fun fetchDashBoard(): Single<DashboardResponse>
 
 }

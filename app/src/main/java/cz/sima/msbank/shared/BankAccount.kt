@@ -12,6 +12,15 @@ data class BankAccount(
     val number: String = "",
     val bankCode: String = ""
 ) {
+
+    companion object {
+        fun fromString(string: String): BankAccount {
+            // TODO extend for prefix and create tests
+            val split = string.split('/')
+            return BankAccount(number = split[0], bankCode = split[1])
+        }
+    }
+
     fun toFormattedString(): String {
         val stringBuilder = StringBuilder()
 
