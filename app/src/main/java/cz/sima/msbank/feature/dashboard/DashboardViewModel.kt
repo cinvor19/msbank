@@ -1,5 +1,6 @@
 package cz.sima.msbank.feature.dashboard
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.sima.msbank.base.BaseViewModel
@@ -19,7 +20,12 @@ class DashboardViewModel(
     fun getDashBoardItems(): LiveData<List<DashBoardItem>> = dashBoardItems
     fun getLoadingState(): LiveData<LoadingState> = loadingState
 
-    fun fetchData() {
+    init {
+        fetchDashboard()
+        fetchTransactions()
+    }
+
+    fun fetchDashboard() {
 
         loadingState.value = Loading
         subscribe(dashBoardRepository.fetchDashBoard(),
@@ -32,8 +38,14 @@ class DashboardViewModel(
             })
     }
 
+    fun fetchTransactions() {
+        subscribe(dashBoardRepository.fetchTransactions("24"), {
+            Log.d("Transaction", it.joinToString(","))
+        })
+    }
+
     fun onFabButtonClick() {
-        fetchData()
+        fetchDashboard()
         // navigate(R.id.action_navigation_dashboard_to_paymentFragment)
     }
 }

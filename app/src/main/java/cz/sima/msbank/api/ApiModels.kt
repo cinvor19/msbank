@@ -59,3 +59,13 @@ data class DashBoardPromoApi(
     @Json(name = "title")
     val title: String
 )
+
+@JsonClass(generateAdapter = true)
+data class TransactionResponse(
+    @Json(name = "id")
+    val id: String,
+    @Json(name = "counterPart")
+    val counterPart: String,
+    @Json(name = "amount")
+    val amount: String
+)

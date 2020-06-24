@@ -15,7 +15,7 @@
 
         <cz.sima.msbank.customview.loadingview.LoadingView
             android:id="@+id/loading_view_dashboards"
-            onReloadClick="@{()->vm.fetchData()}"
+            onReloadClick="@{()->vm.fetchDashboard()}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:state="@{vm.getLoadingState()}">

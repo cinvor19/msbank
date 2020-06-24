@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseVMFragment
 import cz.sima.msbank.databinding.FragmentDashboardBinding
-import kotlinx.android.synthetic.main.fragment_cards.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment :
@@ -20,7 +19,6 @@ class DashboardFragment :
         super.onViewCreated(view, savedInstanceState)
 
         initRecycler()
-        viewModel.fetchData()
     }
 
     private fun initRecycler() {
