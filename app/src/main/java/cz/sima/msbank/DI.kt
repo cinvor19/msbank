@@ -1,11 +1,13 @@
 package cz.sima.msbank
 
 import android.content.Context
+import androidx.room.Room
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import cz.sima.msbank.api.ApiService
 import cz.sima.msbank.api.NetConfig
+import cz.sima.msbank.database.MsBankDatabase
 import cz.sima.msbank.feature.cards.CardsViewModel
 import cz.sima.msbank.feature.dashboard.DashBoardRepository
 import cz.sima.msbank.feature.dashboard.DashboardViewModel
@@ -15,6 +17,7 @@ import cz.sima.msbank.feature.settings.SettingsViewModel
 import cz.sima.msbank.feature.splash.SplashScreenViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -35,7 +38,17 @@ val viewModelModule = module {
 }
 
 val repositoryModule = module {
-    single<DashBoardRepository> { DashBoardRepository(get()) }
+    single { DashBoardRepository(get(), get()) }
+    single {
+        Room.databaseBuilder(
+            androidApplication(),
+            MsBankDatabase::class.java,
+            "msBankDatabaseDB"
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+    single { get<MsBankDatabase>().getMsBankDao() }
 }
 
 val apiModule = module {
@@ -60,7 +73,7 @@ private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl(NetConfig.BASE_URL)
-         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         // .addCallAdapterFactory(CoroutineCallAdapterFactory()) // TODO add when using Coroutines
         .addConverterFactory(
             MoshiConverterFactory.create(

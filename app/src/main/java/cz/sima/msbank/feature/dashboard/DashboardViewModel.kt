@@ -8,9 +8,10 @@ import cz.sima.msbank.customview.loadingview.Loading
 import cz.sima.msbank.customview.loadingview.LoadingState
 import cz.sima.msbank.customview.loadingview.Normal
 import cz.sima.msbank.feature.dashboard.model.DashBoardItem
-import java.util.concurrent.TimeUnit
 
-class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) : BaseViewModel() {
+class DashboardViewModel(
+    private val dashBoardRepository: DashBoardRepository
+) : BaseViewModel() {
 
     private val dashBoardItems: MutableLiveData<List<DashBoardItem>> = MutableLiveData()
     private val loadingState: MutableLiveData<LoadingState> = MutableLiveData(Loading)
@@ -21,7 +22,7 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
     fun fetchData() {
 
         loadingState.value = Loading
-        subscribe(dashBoardRepository.fetchDashBoard().delay(3000, TimeUnit.MILLISECONDS),
+        subscribe(dashBoardRepository.fetchDashBoard(),
             {
                 loadingState.value = Normal
                 dashBoardItems.value = it
