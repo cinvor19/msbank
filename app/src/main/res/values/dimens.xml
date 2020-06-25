@@ -17,4 +17,6 @@
     <dimen name="margin_material_6x">48dp</dimen>
     <dimen name="margin_material_7x">56dp</dimen>
     <dimen name="margin_material_8x">64dp</dimen>
+
+    <item name="pin_keyboard_height_percentage" type="dimen" format="float">0.6</item>
 </resources>
