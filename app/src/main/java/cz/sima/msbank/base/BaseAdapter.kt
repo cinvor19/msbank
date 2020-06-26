@@ -23,9 +23,6 @@ abstract class BaseRecyclerAdapter<T>(
     diffCallback: DiffUtil.ItemCallback<T>
 ) : ListAdapter<T, DataBindingViewHolder<T>>(diffCallback) {
 
-    var onItemClickAction: ((T) -> Unit)? = null
-    var onItemLongClickAction: ((T) -> Boolean)? = null
-
     abstract override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -41,15 +38,6 @@ abstract class BaseRecyclerAdapter<T>(
 
     override fun onBindViewHolder(viewHolder: DataBindingViewHolder<T>, position: Int) {
         val data: T = getItem(position)
-
-        viewHolder.itemView.setOnClickListener { onItemClickAction?.invoke(data) }
-
-        viewHolder.itemView.setOnLongClickListener {
-            // return true if you want only long click event to be consumed
-            // return false if you want other click events to be consumed after long click event
-            return@setOnLongClickListener onItemLongClickAction?.invoke(data) ?: false
-        }
-
         viewHolder.bindTo(data, parentViewModel)
     }
 
