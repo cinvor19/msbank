@@ -18,13 +18,22 @@
     <com.google.android.material.card.MaterialCardView
         style="@style/default_card_view"
         android:onClick="@{() -> vm.onAccountClick()}"
-        app:cardBackgroundColor="@color/colorPrimary">
+        app:cardBackgroundColor="@color/grey">
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_material_base"
             android:text="@{item.account.number}" />
+
+        <cz.sima.msbank.customview.loadingview.LoadingView
+            android:id="@+id/loading_view_account_transaction"
+            android:layout_width="mat"
+            app:state="@{item.loadingState}">
+
+
+
+        </cz.sima.msbank.customview.loadingview.LoadingView>
 
     </com.google.android.material.card.MaterialCardView>
 

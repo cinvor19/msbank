@@ -1,6 +1,7 @@
 package cz.sima.msbank.feature.dashboard
 
 import cz.sima.msbank.api.ApiService
+import cz.sima.msbank.api.TransactionResponse
 import cz.sima.msbank.database.MsBankDao
 import cz.sima.msbank.database.TransactionDb
 import cz.sima.msbank.feature.dashboard.model.DashBoardAccount
@@ -9,11 +10,14 @@ import cz.sima.msbank.feature.dashboard.model.DashBoardCreditCard
 import cz.sima.msbank.feature.dashboard.model.DashBoardItem
 import cz.sima.msbank.feature.dashboard.model.DashBoardItemType
 import cz.sima.msbank.feature.dashboard.model.DashBoardPromo
+import cz.sima.msbank.shared.Transaction
 import cz.sima.msbank.utils.extensions.fireAndForget
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.functions.Function4
+import java.util.concurrent.TimeUnit
+import kotlin.random.Random
 
 /**
  * Created by Michal Šíma on 23.06.2020.
@@ -22,10 +26,12 @@ class DashBoardRepository(
     private val apiService: ApiService,
     private val msBankDao: MsBankDao
 ) {
-    fun fetchDashBoard(): Flowable<List<DashBoardItem>> {
+    fun fetchDashBoard(onlyFromDb: Boolean = false): Flowable<List<DashBoardItem>> {
         return fetchDashBoardFromDb()
             .doOnSubscribe {
-                fetchDashBoardApi().fireAndForget()
+                if (!onlyFromDb) {
+                    fetchDashBoardApi().fireAndForget()
+                }
             }
     }
 
@@ -71,15 +77,14 @@ class DashBoardRepository(
         Completable.concat(completables).fireAndForget()
     }
 
-    fun requestTransactionsFromApi(accountId: String) {
-        apiService.fetchTransactions(accountId)
-            .flattenAsObservable { it }
-            .map { TransactionDb.fromApiResponse(it, accountId) }
-            .toList()
-            .flatMapCompletable {
-                msBankDao.insertTransactions(it)
-            }
-            .fireAndForget()
+    fun fetchTransactionsFromApi(accountId: String): Single<List<Transaction>> {
+        return apiService.fetchTransactions(accountId)
+            .map { response ->
+                response
+                    .map {
+                        Transaction.fromApi(it, accountId)
+                    }
+            }.delay(Random.nextLong(5000), TimeUnit.MILLISECONDS)
     }
 
     fun fetchTransactionsFromDb(accountId: String): Flowable<List<TransactionDb>> {
