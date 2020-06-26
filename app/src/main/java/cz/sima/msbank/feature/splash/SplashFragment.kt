@@ -11,4 +11,5 @@ class SplashFragment :
     BaseVMFragment<FragmentSplashBinding, SplashScreenViewModel>(SplashScreenViewModel::class) {
 
     override fun getLayoutId() = layout.fragment_splash
+
 }

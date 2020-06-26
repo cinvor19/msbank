@@ -12,9 +12,3 @@ object Loading : LoadingState()
 object Empty : LoadingState()
 
 data class Error(val throwable: Throwable) : LoadingState()
-
-enum class InitialState {
-    Normal,
-    Loading,
-    Empty
-}

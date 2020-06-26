@@ -102,18 +102,6 @@ class LoadingView @JvmOverloads constructor(
         buttonErrorReload?.setOnClickListener { action.invoke() }
     }
 
-    fun showInitialState(initialState: InitialState) {
-        if (!isInitialStateConsumed) {
-            when (initialState) {
-                InitialState.Normal -> showState(Normal)
-                InitialState.Loading -> showState(Loading)
-                InitialState.Empty -> showState(Empty)
-            }
-
-            isInitialStateConsumed = true
-        }
-    }
-
     fun showState(loadingState: LoadingState) {
 
         initializeViews()
