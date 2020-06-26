@@ -27,6 +27,11 @@ class DashboardFragment :
 
         recycler_dashboards.adapter = adapter
 
+
+        observe(viewModel.getNotifyItemChange()) {
+            adapter.notifyItemChanged(it)
+        }
+
         observe(viewModel.getDashBoardItems()) {
             adapter.submitList(it)
         }

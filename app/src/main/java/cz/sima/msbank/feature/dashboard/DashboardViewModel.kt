@@ -19,12 +19,14 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
 
     private val dashBoardItems: MutableLiveData<List<DashBoardItem>> = MutableLiveData()
     private val loadingState: MutableLiveData<LoadingState> = MutableLiveData(Loading)
+    private val notifyItemChange: MutableLiveData<Int> = MutableLiveData()
 
     // AccountId -> loadingState
     private val transactionMap = mutableMapOf<String, TransactionLoadingState>()
 
     fun getDashBoardItems(): LiveData<List<DashBoardItem>> = dashBoardItems
     fun getLoadingState(): LiveData<LoadingState> = loadingState
+    fun getNotifyItemChange(): LiveData<Int> = notifyItemChange
 
     init {
         fetchDashboard()
@@ -35,7 +37,6 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
             loadingState.postValue(Loading)
         },
             {
-                Log.d("Flow", "init")
                 loadingState.value = Normal
                 dashBoardItems.value = processDashBoardItems(it)
             },
@@ -44,20 +45,17 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
             })
     }
 
-    fun processDashBoardItems(items: List<DashBoardItem>): List<DashBoardItem> {
-        Log.d("Flow", "Process called")
+    private fun processDashBoardItems(items: List<DashBoardItem>): List<DashBoardItem> {
         items.filterIsInstance<Transactionable>()
             .map {
                 val loadingStatus =
                     transactionMap.getOrDefault(it.id, TransactionLoadingState.NotStarted)
                 when (loadingStatus) {
                     TransactionLoadingState.NotStarted -> {
-                        Log.d("Flow", "Not Started item ${it.id}")
                         it.loadingState.value = Loading
                         fetchTransactions(it.id)
                     }
                     TransactionLoadingState.Loading -> {
-                        Log.d("Flow", "Loading item ${it.id}")
                         it.loadingState.value = Loading
                     }
                     is TransactionLoadingState.Done -> {
@@ -70,31 +68,18 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
     }
 
     private fun fetchTransactions(accountId: String) {
-        Log.d("Flow", "Fetching $accountId")
         transactionMap[accountId] = TransactionLoadingState.Loading
-        subscribe(
-            Single.zip(
-                dashBoardRepository.fetchDashBoard(true).firstOrError(),
-                dashBoardRepository.fetchTransactionsFromApi(accountId),
-                BiFunction<List<DashBoardItem>, List<Transaction>, List<DashBoardItem>> { dashBoardItems, transactions ->
-                    dashBoardItems.map {
-                        if (it is Transactionable) {
-                            if (it.id == accountId) {
-                                transactionMap[accountId] =
-                                    TransactionLoadingState.Done(transactions)
-                                it.loadingState.postValue(Normal)
-                                it.transactions.postValue(transactions)
-                            } else {
-                                Log.d("Flow", "else")
-                            }
-                        }
-                        it
-                    }
+        subscribe(dashBoardRepository.fetchTransactionsFromApi(accountId), { transactions ->
+            dashBoardItems.value
+                ?.filterIsInstance<Transactionable>()
+                ?.filter { it.id == accountId }
+                ?.map { item ->
+                    transactionMap[accountId] = TransactionLoadingState.Done(transactions)
+                    item.loadingState.value = Normal
+                    item.transactions.value = transactions
+                    notifyItemChange.value = dashBoardItems.value?.indexOf(item as DashBoardItem)
                 }
-            ), {
-                Log.d("Flow", "transa")
-                dashBoardItems.value = it
-            })
+        })
     }
 
     fun onFabButtonClick() {
@@ -121,7 +106,7 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
         showTodoToast.publish()
     }
 
-    fun onAccountRecyclerClick(){
+    fun onAccountRecyclerClick() {
         showTodoToast.publish()
     }
 }

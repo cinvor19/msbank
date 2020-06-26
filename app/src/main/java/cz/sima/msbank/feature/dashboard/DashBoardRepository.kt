@@ -84,7 +84,7 @@ class DashBoardRepository(
                     .map {
                         Transaction.fromApi(it, accountId)
                     }
-            }.delay(Random.nextLong(5000), TimeUnit.MILLISECONDS)
+            }
     }
 
     fun fetchTransactionsFromDb(accountId: String): Flowable<List<TransactionDb>> {
