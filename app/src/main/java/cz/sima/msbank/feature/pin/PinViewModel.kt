@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.material.button.MaterialButton
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseViewModel
+import cz.sima.msbank.customview.loadingview.Loading
+import cz.sima.msbank.customview.loadingview.LoadingState
+import cz.sima.msbank.customview.loadingview.Normal
 import cz.sima.msbank.event.AnySingleLiveEvent
 import cz.sima.msbank.utils.Constants
 import cz.sima.msbank.utils.extensions.cutLastChar
@@ -13,13 +16,18 @@ import cz.sima.msbank.utils.extensions.cutLastChar
 /**
  * Created by Michal Šíma on 13.06.2020.
  */
-class PinViewModel : BaseViewModel() {
+class PinViewModel(private val pinRepository: PinRepository) : BaseViewModel() {
 
     val pin: MutableLiveData<String> = MutableLiveData("")
 
+    private val loadingState: MutableLiveData<LoadingState> = MutableLiveData(Normal)
+    private val areButtonsEnabled: MutableLiveData<Boolean> = MutableLiveData(true)
     private val showPinError: AnySingleLiveEvent = AnySingleLiveEvent()
 
+    fun getLoadingState(): LiveData<LoadingState> = loadingState
+    fun getAreButtonsEnabled(): LiveData<Boolean> = areButtonsEnabled
     fun getShowPinError(): LiveData<Any> = showPinError
+    
     fun onKeyboardClicked(view: View) {
         val tmpPin = pin.value
         with(view as? MaterialButton) {
@@ -35,17 +43,21 @@ class PinViewModel : BaseViewModel() {
 
     private fun checkPinCompleteness() {
         if (pin.value?.length == Constants.PIN_LENGTH) {
-            checkPinValid()
+            doLoginRequest()
         }
     }
 
-    private fun checkPinValid() {
-        if (pin.value == "1234") {
-            navigate(R.id.action_pinFragment_to_navigation_dashboard)
-        } else {
-            resetViews()
-            showPinError.publish()
-        }
+    private fun doLoginRequest() {
+        changeLoading(Loading)
+        subscribe(pinRepository.login(pin.value ?: ""),
+            {
+                navigate(R.id.action_pinFragment_to_navigation_dashboard)
+            },
+            {
+                changeLoading(Normal)
+                resetViews()
+                showPinError.publish()
+            })
     }
 
     fun onEraseClicked() {
@@ -59,5 +71,13 @@ class PinViewModel : BaseViewModel() {
 
     private fun resetViews() {
         pin.value = ""
+    }
+
+    private fun changeLoading(newLoadingState: LoadingState) {
+        loadingState.value = newLoadingState
+        areButtonsEnabled.value = when (newLoadingState) {
+            Loading -> false
+            else -> true
+        }
     }
 }

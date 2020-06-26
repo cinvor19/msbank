@@ -1,5 +1,6 @@
 package cz.sima.msbank.api
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,4 +15,7 @@ interface ApiService {
 
     @GET("transaction/{accountId}")
     fun fetchTransactions(@Path("accountId") accountId: String): Single<List<TransactionResponse>>
+
+    @GET("login/{pin}")
+    fun login(@Path("pin") pin: String): Completable
 }

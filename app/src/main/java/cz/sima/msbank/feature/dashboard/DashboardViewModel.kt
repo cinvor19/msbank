@@ -1,6 +1,5 @@
 package cz.sima.msbank.feature.dashboard
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.sima.msbank.R
@@ -12,8 +11,6 @@ import cz.sima.msbank.customview.loadingview.Normal
 import cz.sima.msbank.feature.dashboard.model.DashBoardItem
 import cz.sima.msbank.feature.dashboard.model.Transactionable
 import cz.sima.msbank.shared.Transaction
-import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 
 class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) : BaseViewModel() {
 

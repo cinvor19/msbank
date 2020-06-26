@@ -12,6 +12,7 @@ import cz.sima.msbank.feature.cards.CardsViewModel
 import cz.sima.msbank.feature.dashboard.DashBoardRepository
 import cz.sima.msbank.feature.dashboard.DashboardViewModel
 import cz.sima.msbank.feature.payment.PaymentViewModel
+import cz.sima.msbank.feature.pin.PinRepository
 import cz.sima.msbank.feature.pin.PinViewModel
 import cz.sima.msbank.feature.settings.SettingsViewModel
 import cz.sima.msbank.feature.splash.SplashScreenViewModel
@@ -33,12 +34,13 @@ val viewModelModule = module {
     viewModel { DashboardViewModel(get()) }
     viewModel { CardsViewModel() }
     viewModel { SettingsViewModel() }
-    viewModel { PinViewModel() }
+    viewModel { PinViewModel(get()) }
     viewModel { PaymentViewModel() }
 }
 
 val repositoryModule = module {
     single { DashBoardRepository(get(), get()) }
+    single { PinRepository(get()) }
     single {
         Room.databaseBuilder(
             androidApplication(),

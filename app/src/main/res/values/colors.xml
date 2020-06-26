@@ -9,6 +9,7 @@
     <color name="grey">#858585</color>
 
     <color name="textColorGrey">#717171</color>
+    <color name="disabledColor">#808080 </color>
 
     <color name="defaultGreyBackground">#FFF3F4F6</color>
 
