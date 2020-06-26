@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
  */
 interface DashBoardItem {
 
+    val order: Int
+
     fun getItemType(): DashBoardItemType
 
     fun areItemsSame(otherItem: DashBoardItem): Boolean
     fun areContentsSame(otherItem: DashBoardItem): Boolean
+
 }
 
 enum class DashBoardItemType(val viewType: Int) {

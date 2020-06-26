@@ -17,6 +17,7 @@
 
     <com.google.android.material.card.MaterialCardView
         style="@style/default_card_view"
+        android:onClick="@{() -> vm.onAccountClick()}"
         app:cardBackgroundColor="@color/colorPrimary">
 
         <com.google.android.material.textview.MaterialTextView

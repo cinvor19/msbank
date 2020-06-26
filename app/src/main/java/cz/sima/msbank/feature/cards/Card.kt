@@ -8,16 +8,15 @@ import java.util.*
  * Created by Michal Šíma on 07.06.2020.
  */
 data class Card(
-    val id: String = UUID.randomUUID().toString(),
     val cardNumber: String,
     val cardType: CardType = CardType.fromCardNumber(cardNumber)
 ) {
     companion object {
         fun getMockCards(): List<Card> {
             return listOf(
-                Card("1", "1111222233334444", CardType.MASTER_CARD),
-                Card("2", "1234123412341234", CardType.VISA),
-                Card("3", "1122334411223344", CardType.AMERICAN_EXPRESS)
+                Card("1111222233334444", CardType.MASTER_CARD),
+                Card("1234123412341234", CardType.VISA),
+                Card("1122334411223344", CardType.AMERICAN_EXPRESS)
             )
         }
     }
@@ -35,7 +34,7 @@ class CardItemDiffCallback : DiffUtil.ItemCallback<Card>() {
     }
 
     override fun areContentsTheSame(oldItem: Card, newItem: Card): Boolean {
-        return oldItem.id == newItem.id
+        return true
     }
 }
 

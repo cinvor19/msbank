@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_material_base"
-            android:text="@{item.creditCard.cardNumber}" />
+            android:text="@{item.cardNumber}" />
 
     </com.google.android.material.card.MaterialCardView>
 
