@@ -32,6 +32,7 @@ data class TransactionDb(
 @Entity(tableName = "account")
 data class DashBoardAccountDb(
     @PrimaryKey val id: String,
+    val name: String,
     val accountNumber: String,
     val balance: String,
     val order: Int

@@ -17,4 +17,11 @@
 
 
     <string name="pin_invalid">Pin does not match, please try again</string>
+
+    <!-- DashBoard -->
+    <string name="dashboard_account_button_pay">Pay</string>
+    <string name="dashboard_account_button_qr">QR</string>
+    <string name="dashboard_account_button_info">Info</string>
+    <string name="dashboard_account_button_settings">Settings</string>
+
 </resources>

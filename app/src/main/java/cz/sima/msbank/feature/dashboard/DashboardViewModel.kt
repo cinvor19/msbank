@@ -31,10 +31,9 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
     }
 
     fun fetchDashboard() {
-        subscribe(dashBoardRepository.fetchDashBoard()
-            .doOnSubscribe {
-                loadingState.postValue(Loading)
-            },
+        subscribe(dashBoardRepository.fetchDashBoard().doOnSubscribe {
+            loadingState.postValue(Loading)
+        },
             {
                 Log.d("Flow", "init")
                 loadingState.value = Normal
@@ -103,7 +102,27 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
     }
 
     fun onAccountClick() {
-        navigate(R.id.action_navigation_dashboard_to_paymentFragment)
+        showTodoToast.publish()
+    }
+
+    fun onAccountPayClick() {
+        showTodoToast.publish()
+    }
+
+    fun onAccountQrClick() {
+        showTodoToast.publish()
+    }
+
+    fun onAccountInfoClick() {
+        showTodoToast.publish()
+    }
+
+    fun onAccountSettingsClick() {
+        showTodoToast.publish()
+    }
+
+    fun onAccountRecyclerClick(){
+        showTodoToast.publish()
     }
 }
 

@@ -25,7 +25,7 @@ data class DashBoardAccountApi(
     @Json(name = "accountNumber")
     val accountNumber: String,
     @Json(name = "balance")
-    val balance: Int,
+    val balance: String,
     @Json(name = "name")
     val name: String
 )
@@ -45,7 +45,7 @@ data class DashBoardCreditCardApi(
     @Json(name = "id")
     val id: String,
     @Json(name = "balance")
-    val balance: Int,
+    val balance: String,
     @Json(name = "cardNumber")
     val cardNumber: String
 )
@@ -64,6 +64,8 @@ data class DashBoardPromoApi(
 data class TransactionResponse(
     @Json(name = "id")
     val id: String,
+    @Json(name = "date")
+    val date: String,
     @Json(name = "counterPart")
     val counterPart: String,
     @Json(name = "amount")

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="cz.sima.msbank.utils.extensions.DateExtensionsKt" />
+
+        <variable
+            name="item"
+            type="cz.sima.msbank.shared.Transaction" />
+
+
+        <variable
+            name="vm"
+            type="cz.sima.msbank.feature.dashboard.DashboardViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()-> vm.onAccountRecyclerClick()}"
+        android:paddingStart="@dimen/margin_material_base"
+        android:paddingTop="@dimen/margin_material_base_half"
+        android:paddingEnd="@dimen/margin_material_base"
+        android:paddingBottom="@dimen/margin_material_base_half">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{DateExtensionsKt.toDisplayFormat(item.date)}"
+            android:textAppearance="@style/AppTheme.Text.Body2.grey"
+            app:layout_constraintEnd_toStartOf="@+id/text_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_counter_part"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{item.counterPart}"
+            android:textAppearance="@style/AppTheme.Text.Body1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/AppTheme.Text.Body1"
+            app:layout_constraintBottom_toBottomOf="@+id/text_counter_part"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_date"
+            app:money="@{item.amount}"
+            app:withColors="@{true}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

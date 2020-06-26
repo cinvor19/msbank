@@ -13,6 +13,7 @@ import java.math.BigDecimal
  */
 data class DashBoardAccount(
     override val id: String,
+    val name: String,
     val account: BankAccount,
     val balance: BigDecimal,
     override val order: Int,
@@ -24,6 +25,7 @@ data class DashBoardAccount(
         fun fromApi(apiObject: DashBoardAccountApi, order: Int): DashBoardAccount {
             return DashBoardAccount(
                 apiObject.id,
+                apiObject.name,
                 BankAccount.fromString(apiObject.accountNumber),
                 BigDecimal(apiObject.balance),
                 order
@@ -33,6 +35,7 @@ data class DashBoardAccount(
         fun fromDb(dbObject: DashBoardAccountDb): DashBoardAccount {
             return DashBoardAccount(
                 dbObject.id,
+                dbObject.name,
                 BankAccount.fromString(dbObject.accountNumber),
                 BigDecimal(dbObject.balance),
                 dbObject.order
@@ -41,7 +44,13 @@ data class DashBoardAccount(
     }
 
     fun toDb(): DashBoardAccountDb {
-        return DashBoardAccountDb(id, account.toFormattedString(), balance.toPlainString(), order)
+        return DashBoardAccountDb(
+            id,
+            name,
+            account.toFormattedString(),
+            balance.toPlainString(),
+            order
+        )
     }
 
     override fun getItemType(): DashBoardItemType {

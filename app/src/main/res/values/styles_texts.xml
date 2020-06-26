@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Text.H1" parent="TextAppearance.MaterialComponents.Headline1" />
+
+    <style name="AppTheme.Text.H2" parent="TextAppearance.MaterialComponents.Headline2" />
+
+    <style name="AppTheme.Text.H3" parent="TextAppearance.MaterialComponents.Headline3" />
+
+    <style name="AppTheme.Text.H4" parent="TextAppearance.MaterialComponents.Headline4" />
+
+    <style name="AppTheme.Text.H5" parent="TextAppearance.MaterialComponents.Headline5" />
+
+    <style name="AppTheme.Text.H6" parent="TextAppearance.MaterialComponents.Headline6" />
+
+    <style name="AppTheme.Text.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1" />
+
+    <style name="AppTheme.Text.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2" />
+
+    <style name="AppTheme.Text.Body1" parent="TextAppearance.MaterialComponents.Body1" />
+
+    <style name="AppTheme.Text.Body2" parent="TextAppearance.MaterialComponents.Body2" />
+
+    <style name="AppTheme.Text.Button" parent="TextAppearance.MaterialComponents.Button" />
+
+    <style name="AppTheme.Text.Caption" parent="TextAppearance.MaterialComponents.Caption" />
+
+    <style name="AppTheme.Text.Overline" parent="TextAppearance.MaterialComponents.Overline" />
+
+    <style name="AppTheme.Text.H1.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.H2.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.H3.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.H4.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.H5.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.H6.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.Subtitle1.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.Subtitle2.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.Body1.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.Body2.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.Button.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.Caption.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <style name="AppTheme.Text.Overline.grey">
+        <item name="android:textColor">@color/textColorGrey</item>
+    </style>
+
+    <!--    <style name="AppTheme.Text.H1.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H1.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H1.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H2.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H2.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H2.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H3.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H3.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H3.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H4.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H4.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H4.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H5.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H5.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H5.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H6.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H6.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.H6.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle1.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle1.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle1.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle2.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle2.White">-->
+    <!--        <item name="android:textColor">@color/colorTextWhite</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle2.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle1.Primary">-->
+    <!--        <item name="android:textColor">@color/colorTextPrimary</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle2.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Subtitle2.Contrast">-->
+    <!--        <item name="android:textColor">@color/colorPrimaryContrast</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Body1.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--        <item name="android:lineSpacingExtra">@dimen/line_space_base</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Body1.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--        <item name="android:lineSpacingExtra">@dimen/line_space_base</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Body1.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--        <item name="android:lineSpacingExtra">@dimen/line_space_base</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Body2.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--        <item name="android:lineSpacingExtra">@dimen/line_space_base</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Body2.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--        <item name="android:lineSpacingExtra">@dimen/line_space_base</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Body2.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--        <item name="android:lineSpacingExtra">@dimen/line_space_base</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Button.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Button.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Button.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Caption.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Caption.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Caption.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Overline.Light">-->
+    <!--        <item name="android:textColor">@color/colorTextLight</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Overline.Transitive">-->
+    <!--        <item name="android:textColor">@color/colorTextTransitive</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="AppTheme.Text.Overline.Dark">-->
+    <!--        <item name="android:textColor">@color/colorTextDark</item>-->
+    <!--    </style>-->
+
+</resources>

@@ -50,7 +50,7 @@ fun <T> Single<T>.fireAndForget() {
                         Log.d(this.javaClass.simpleName, "Fire and forget $this on success: $it")
                     },
                     {
-                        Log.d(this.javaClass.simpleName, "Fire and forget $this on error: ${it.stackTrace}")
+                        Log.d(this.javaClass.simpleName, "Fire and forget $this on error: ${it.message}")
                     })
 }
 
@@ -63,6 +63,6 @@ fun Completable.fireAndForget() {
                         Log.d(this.javaClass.simpleName, "Fire and forget $this on complete")
                     },
                     {
-                        Log.d(this.javaClass.simpleName, "Fire and forget $this on error: ${it.stackTrace}")
+                        Log.d(this.javaClass.simpleName, "Fire and forget $this on error: ${it.message}")
                     })
 }

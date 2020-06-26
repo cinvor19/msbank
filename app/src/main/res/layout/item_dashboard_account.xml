@@ -17,23 +17,102 @@
 
     <com.google.android.material.card.MaterialCardView
         style="@style/default_card_view"
-        android:onClick="@{() -> vm.onAccountClick()}"
-        app:cardBackgroundColor="@color/grey">
+        android:onClick="@{() -> vm.onAccountClick()}">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_material_base"
-            android:text="@{item.account.number}" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <cz.sima.msbank.customview.loadingview.LoadingView
-            android:id="@+id/loading_view_account_transaction"
-            android:layout_width="mat"
-            app:state="@{item.loadingState}">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_account_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_material_base"
+                android:text="@{item.name}"
+                android:textAppearance="@style/AppTheme.Text.H6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_account_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_material_base"
+                android:text="@{item.account.toFormattedString()}"
+                android:textAppearance="@style/AppTheme.Text.Body2.grey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_account_name" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_account_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_material_base"
+                android:textAppearance="@style/AppTheme.Text.H6"
+                app:layout_constraintBottom_toBottomOf="@+id/text_account_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_account_name"
+                app:money="@{item.balance}" />
 
-        </cz.sima.msbank.customview.loadingview.LoadingView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_pay"
+                style="@style/dashboard_account_button"
+                android:drawableTop="@drawable/ic_money_36dp"
+                android:onClick="@{()->vm.onAccountPayClick()}"
+                android:text="@string/dashboard_account_button_pay"
+                app:layout_constraintEnd_toStartOf="@+id/button_qr"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_account_number" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_qr"
+                style="@style/dashboard_account_button"
+                android:drawableTop="@drawable/ic_qr_code_36dp"
+                android:onClick="@{()->vm.onAccountQrClick()}"
+                android:text="@string/dashboard_account_button_qr"
+                app:layout_constraintEnd_toStartOf="@+id/button_info"
+                app:layout_constraintStart_toEndOf="@+id/button_pay"
+                app:layout_constraintTop_toBottomOf="@+id/text_account_number" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_info"
+                style="@style/dashboard_account_button"
+                android:drawableTop="@drawable/ic_info_outline_36dp"
+                android:onClick="@{()->vm.onAccountInfoClick()}"
+                android:text="@string/dashboard_account_button_info"
+                app:layout_constraintEnd_toStartOf="@+id/button_settings"
+                app:layout_constraintStart_toEndOf="@+id/button_qr"
+                app:layout_constraintTop_toBottomOf="@+id/text_account_number" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_settings"
+                style="@style/dashboard_account_button"
+                android:drawableTop="@drawable/ic_settings_36dp"
+                android:onClick="@{()->vm.onAccountSettingsClick()}"
+                android:text="@string/dashboard_account_button_settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_info"
+                app:layout_constraintTop_toBottomOf="@+id/text_account_number" />
+
+            <cz.sima.msbank.customview.loadingview.LoadingView
+                android:id="@+id/loading_view_account_transaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_material_base"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_pay"
+                app:state="@{item.loadingState}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_account_transactions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </cz.sima.msbank.customview.loadingview.LoadingView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

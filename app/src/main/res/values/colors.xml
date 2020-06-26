@@ -7,4 +7,11 @@
     <color name="black">#000</color>
     <color name="white">#fff</color>
     <color name="grey">#858585</color>
+
+    <color name="textColorGrey">#717171</color>
+
+    <color name="defaultGreyBackground">#FFF3F4F6</color>
+
+    <color name="textColorMoneyPositive">#3E9E3E</color>
+    <color name="textColorMoneyNegative">#933131</color>
 </resources>
