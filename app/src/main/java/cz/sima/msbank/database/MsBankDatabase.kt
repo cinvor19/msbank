@@ -10,7 +10,6 @@ import androidx.room.RoomDatabase
     entities = [TransactionDb::class,
         DashBoardAccountDb::class,
         DashBoardAnnouncementDb::class,
-        DashBoardCreditCardDb::class,
         DashBoardPromoDb::class],
     version = 1,
     exportSchema = false

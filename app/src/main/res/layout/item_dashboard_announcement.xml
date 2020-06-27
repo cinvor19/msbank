@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -15,15 +16,65 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        style="@style/default_card_view"
-        app:cardBackgroundColor="@color/colorPrimary">
+    <com.google.android.material.card.MaterialCardView style="@style/default_card_view">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_material_base"
-            android:text="@{item.title}" />
+            android:paddingBottom="@dimen/margin_material_base_half">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_announcement_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_material_base"
+                android:layout_marginBottom="@dimen/margin_material_base_half"
+                android:text="@{item.title}"
+                android:textAppearance="@style/AppTheme.Text.H6"
+                app:layout_constraintBottom_toTopOf="@+id/text_announcement_message"
+                app:layout_constraintEnd_toStartOf="@+id/img_announcement_close"
+                app:layout_constraintStart_toEndOf="@+id/img_announcement_warning"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Announcement title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_announcement_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_material_base"
+                android:text="@{item.message}"
+                android:textAppearance="@style/AppTheme.Text.Body2.grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_announcement_warning"
+                app:layout_constraintTop_toBottomOf="@+id/text_announcement_title"
+                tools:text="Announcement long message. Announcement long message. " />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_announcement_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_material_base"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{() -> vm.onAnnouncementCloseClick(item)}"
+                android:src="@drawable/ic_close_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_announcement_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_material_base"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_warning_24dp"
+                android:tint="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

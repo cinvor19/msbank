@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,14 +18,54 @@
 
     <com.google.android.material.card.MaterialCardView
         style="@style/default_card_view"
-        app:cardBackgroundColor="@color/colorAccent">
+        android:onClick="@{() -> vm.onPromoClick(item)}">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_material_base"
-            android:text="@{item.title}" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_promo_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_material_base"
+                android:text="@{item.title}"
+                android:textAppearance="@style/AppTheme.Text.H6"
+                app:layout_constraintBottom_toTopOf="@+id/text_promo_message"
+                app:layout_constraintEnd_toStartOf="@+id/animation_promo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Promo title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_promo_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_material_base"
+                android:text="@{item.message}"
+                android:textAppearance="@style/AppTheme.Text.Body2.grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/animation_promo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_promo_title"
+                tools:text="Promo long message. Promo long message. " />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_promo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="@dimen/margin_material_base"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/promo_animation"
+                app:lottie_speed="1.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-    
+
 </layout>

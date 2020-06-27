@@ -12,8 +12,6 @@ data class DashboardResponse(
     val accounts: List<DashBoardAccountApi>,
     @Json(name = "announcements")
     val announcements: List<DashBoardAnnouncementApi>,
-    @Json(name = "cards")
-    val creditCards: List<DashBoardCreditCardApi>,
     @Json(name = "promos")
     val promos: List<DashBoardPromoApi>
 )
@@ -38,16 +36,6 @@ data class DashBoardAnnouncementApi(
     val message: String,
     @Json(name = "title")
     val title: String
-)
-
-@JsonClass(generateAdapter = true)
-data class DashBoardCreditCardApi(
-    @Json(name = "id")
-    val id: String,
-    @Json(name = "balance")
-    val balance: String,
-    @Json(name = "cardNumber")
-    val cardNumber: String
 )
 
 @JsonClass(generateAdapter = true)

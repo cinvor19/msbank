@@ -10,12 +10,11 @@ import cz.sima.msbank.base.BaseViewModel
 import cz.sima.msbank.base.DataBindingViewHolder
 import cz.sima.msbank.feature.dashboard.model.DashBoardAccount
 import cz.sima.msbank.feature.dashboard.model.DashBoardAnnouncement
-import cz.sima.msbank.feature.dashboard.model.DashBoardCreditCard
 import cz.sima.msbank.feature.dashboard.model.DashBoardDiffUtil
 import cz.sima.msbank.feature.dashboard.model.DashBoardItem
 import cz.sima.msbank.feature.dashboard.model.DashBoardItemType
 import cz.sima.msbank.feature.dashboard.model.DashBoardPromo
-import kotlinx.android.synthetic.main.fragment_dashboard.*
+import cz.sima.msbank.feature.dashboard.model.DashBoardSpace
 import kotlinx.android.synthetic.main.item_dashboard_account.view.*
 
 /**
@@ -38,12 +37,6 @@ class DashBoardAdapter(dashboardViewModel: DashboardViewModel) :
                     R.layout.item_dashboard_account
                 )
             )
-            DashBoardItemType.CREDIT -> CreditCardViewHolder(
-                getViewDataBinding(
-                    parent,
-                    R.layout.item_dashboard_credit_card
-                )
-            )
             DashBoardItemType.PROMO -> PromoViewHolder(
                 getViewDataBinding(
                     parent,
@@ -54,6 +47,12 @@ class DashBoardAdapter(dashboardViewModel: DashboardViewModel) :
                 getViewDataBinding(
                     parent,
                     R.layout.item_dashboard_announcement
+                )
+            )
+            DashBoardItemType.SPACE -> SpaceViewHolder(
+                getViewDataBinding(
+                    parent,
+                    R.layout.item_dashboard_space
                 )
             )
         }
@@ -92,13 +91,13 @@ class DashBoardAdapter(dashboardViewModel: DashboardViewModel) :
             binding
         )
 
-    inner class CreditCardViewHolder(binding: ViewDataBinding) :
-        DataBindingViewHolder<DashBoardCreditCard>(
+    inner class PromoViewHolder(binding: ViewDataBinding) :
+        DataBindingViewHolder<DashBoardPromo>(
             binding
         )
 
-    inner class PromoViewHolder(binding: ViewDataBinding) :
-        DataBindingViewHolder<DashBoardPromo>(
+    inner class SpaceViewHolder(binding: ViewDataBinding) :
+        DataBindingViewHolder<DashBoardSpace>(
             binding
         )
 }

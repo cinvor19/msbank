@@ -27,35 +27,36 @@
                 android:id="@+id/text_account_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_material_base"
+                android:layout_marginStart="@dimen/margin_material_base"
                 android:text="@{item.name}"
-                tools:text="Účet jedna"
                 android:textAppearance="@style/AppTheme.Text.H6"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Účet jedna" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_account_number"
                 android:layout_width="0dp"
-                tools:text="232142546/0666"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_material_base"
+                android:layout_marginStart="@dimen/margin_material_base"
+                android:layout_marginTop="@dimen/margin_material_base_half"
                 android:text="@{item.account.toFormattedString()}"
                 android:textAppearance="@style/AppTheme.Text.Body2.grey"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_account_name" />
+                app:layout_constraintTop_toBottomOf="@+id/text_account_name"
+                tools:text="232142546/0666" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_account_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_material_base"
-                tools:text="1 243,ěš Kč"
                 android:textAppearance="@style/AppTheme.Text.H6"
                 app:layout_constraintBottom_toBottomOf="@+id/text_account_number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/text_account_name"
-                app:money="@{item.balance}" />
+                app:money="@{item.balance}"
+                tools:text="1 243,ěš Kč" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_pay"

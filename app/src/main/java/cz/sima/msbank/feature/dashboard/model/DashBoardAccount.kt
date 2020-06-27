@@ -12,14 +12,14 @@ import java.math.BigDecimal
  * Created by Michal Šíma on 21.06.2020.
  */
 data class DashBoardAccount(
-    override val id: String,
+    val id: String,
     val name: String,
     val account: BankAccount,
     val balance: BigDecimal,
     override val order: Int,
-    override val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>(null),
-    override val transactions: MutableLiveData<List<Transaction>> = MutableLiveData(listOf())
-) : DashBoardItem, Transactionable {
+    val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>(null),
+    val transactions: MutableLiveData<List<Transaction>> = MutableLiveData(listOf())
+) : DashBoardItem {
 
     companion object {
         fun fromApi(apiObject: DashBoardAccountApi, order: Int): DashBoardAccount {

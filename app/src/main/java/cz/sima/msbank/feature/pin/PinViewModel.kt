@@ -27,7 +27,7 @@ class PinViewModel(private val pinRepository: PinRepository) : BaseViewModel() {
     fun getLoadingState(): LiveData<LoadingState> = loadingState
     fun getAreButtonsEnabled(): LiveData<Boolean> = areButtonsEnabled
     fun getShowPinError(): LiveData<Any> = showPinError
-    
+
     fun onKeyboardClicked(view: View) {
         val tmpPin = pin.value
         with(view as? MaterialButton) {

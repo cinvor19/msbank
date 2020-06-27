@@ -18,9 +18,9 @@ interface DashBoardItem {
 
 enum class DashBoardItemType(val viewType: Int) {
     ACCOUNT(1),
-    CREDIT(2),
-    PROMO(3),
-    ANNOUNCEMENT(4);
+    PROMO(2),
+    ANNOUNCEMENT(3),
+    SPACE(4);
 
     companion object {
         fun fromInt(value: Int): DashBoardItemType {

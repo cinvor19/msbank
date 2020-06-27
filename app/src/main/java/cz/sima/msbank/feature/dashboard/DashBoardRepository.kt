@@ -1,23 +1,20 @@
 package cz.sima.msbank.feature.dashboard
 
 import cz.sima.msbank.api.ApiService
-import cz.sima.msbank.api.TransactionResponse
 import cz.sima.msbank.database.MsBankDao
 import cz.sima.msbank.database.TransactionDb
 import cz.sima.msbank.feature.dashboard.model.DashBoardAccount
 import cz.sima.msbank.feature.dashboard.model.DashBoardAnnouncement
-import cz.sima.msbank.feature.dashboard.model.DashBoardCreditCard
 import cz.sima.msbank.feature.dashboard.model.DashBoardItem
 import cz.sima.msbank.feature.dashboard.model.DashBoardItemType
 import cz.sima.msbank.feature.dashboard.model.DashBoardPromo
+import cz.sima.msbank.feature.dashboard.model.DashBoardSpace
 import cz.sima.msbank.shared.Transaction
 import cz.sima.msbank.utils.extensions.fireAndForget
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
-import io.reactivex.functions.Function4
-import java.util.concurrent.TimeUnit
-import kotlin.random.Random
+import io.reactivex.functions.Function3
 
 /**
  * Created by Michal Šíma on 23.06.2020.
@@ -40,10 +37,10 @@ class DashBoardRepository(
             .map { response ->
                 var order = 0
                 val li = mutableListOf<DashBoardItem>()
-                li.addAll(response.promos.map { DashBoardPromo.fromApi(it, order++) })
-                li.addAll(response.creditCards.map { DashBoardCreditCard.fromApi(it, order++) })
-                li.addAll(response.accounts.map { DashBoardAccount.fromApi(it, order++) })
                 li.addAll(response.announcements.map { DashBoardAnnouncement.fromApi(it, order++) })
+                li.addAll(response.promos.map { DashBoardPromo.fromApi(it, order++) })
+                li.addAll(response.accounts.map { DashBoardAccount.fromApi(it, order++) })
+                li.add(DashBoardSpace())
                 li.toList()
             }
             .doOnSuccess {
@@ -62,15 +59,15 @@ class DashBoardRepository(
                         DashBoardItemType.ACCOUNT -> msBankDao.insertDashBoardAccount(it.value.map {
                             (it as DashBoardAccount).toDb()
                         })
-                        DashBoardItemType.CREDIT -> msBankDao.insertDashBoardCreditCard(it.value.map {
-                            (it as DashBoardCreditCard).toDb()
-                        })
                         DashBoardItemType.PROMO -> msBankDao.insertDashBoardPromo(it.value.map {
                             (it as DashBoardPromo).toDb()
                         })
                         DashBoardItemType.ANNOUNCEMENT -> msBankDao.insertDashBoardAnnouncement(it.value.map {
                             (it as DashBoardAnnouncement).toDb()
                         })
+                        else -> {
+                            Completable.complete()
+                        }
                     }
                 )
             }
@@ -99,13 +96,6 @@ class DashBoardRepository(
                 }
             }
 
-        val creditFlow = msBankDao.fetchDashBoardCreditCard()
-            .map {
-                it.map {
-                    DashBoardCreditCard.fromDb(it)
-                }
-            }
-
         val accountFlow = msBankDao.fetchDashBoardAccount()
             .map {
                 it.map {
@@ -122,14 +112,13 @@ class DashBoardRepository(
         return Flowable.zip(
             promoFlow,
             announcementFlow,
-            creditFlow,
             accountFlow,
-            Function4 { promos, announcements, creditCards, accounts ->
+            Function3 { promos, announcements, accounts ->
                 val list = mutableListOf<DashBoardItem>()
                 list.addAll(promos)
                 list.addAll(announcements)
-                list.addAll(creditCards)
                 list.addAll(accounts)
+                list.add(DashBoardSpace())
                 list.apply {
                     sortBy { it.order }
                 }

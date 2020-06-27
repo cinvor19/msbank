@@ -8,8 +8,10 @@ import cz.sima.msbank.customview.loadingview.Error
 import cz.sima.msbank.customview.loadingview.Loading
 import cz.sima.msbank.customview.loadingview.LoadingState
 import cz.sima.msbank.customview.loadingview.Normal
+import cz.sima.msbank.feature.dashboard.model.DashBoardAccount
+import cz.sima.msbank.feature.dashboard.model.DashBoardAnnouncement
 import cz.sima.msbank.feature.dashboard.model.DashBoardItem
-import cz.sima.msbank.feature.dashboard.model.Transactionable
+import cz.sima.msbank.feature.dashboard.model.DashBoardPromo
 import cz.sima.msbank.shared.Transaction
 
 class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) : BaseViewModel() {
@@ -43,21 +45,23 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
     }
 
     private fun processDashBoardItems(items: List<DashBoardItem>): List<DashBoardItem> {
-        items.filterIsInstance<Transactionable>()
+        items
             .map {
-                val loadingStatus =
-                    transactionMap.getOrDefault(it.id, TransactionLoadingState.NotStarted)
-                when (loadingStatus) {
-                    TransactionLoadingState.NotStarted -> {
-                        it.loadingState.value = Loading
-                        fetchTransactions(it.id)
-                    }
-                    TransactionLoadingState.Loading -> {
-                        it.loadingState.value = Loading
-                    }
-                    is TransactionLoadingState.Done -> {
-                        it.loadingState.value = Normal
-                        it.transactions.value = loadingStatus.list
+                if (it is DashBoardAccount) {
+                    val loadingStatus =
+                        transactionMap.getOrDefault(it.id, TransactionLoadingState.NotStarted)
+                    when (loadingStatus) {
+                        TransactionLoadingState.NotStarted -> {
+                            it.loadingState.value = Loading
+                            fetchTransactions(it.id)
+                        }
+                        TransactionLoadingState.Loading -> {
+                            it.loadingState.value = Loading
+                        }
+                        is TransactionLoadingState.Done -> {
+                            it.loadingState.value = Normal
+                            it.transactions.value = loadingStatus.list
+                        }
                     }
                 }
             }
@@ -68,7 +72,7 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
         transactionMap[accountId] = TransactionLoadingState.Loading
         subscribe(dashBoardRepository.fetchTransactionsFromApi(accountId), { transactions ->
             dashBoardItems.value
-                ?.filterIsInstance<Transactionable>()
+                ?.filterIsInstance<DashBoardAccount>()
                 ?.filter { it.id == accountId }
                 ?.map { item ->
                     transactionMap[accountId] = TransactionLoadingState.Done(transactions)
@@ -105,6 +109,16 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
 
     fun onAccountRecyclerClick() {
         showTodoToast.publish()
+    }
+
+    fun onPromoClick(promo: DashBoardPromo) {
+        showTodoToast.publish()
+    }
+
+    fun onAnnouncementCloseClick(announcement: DashBoardAnnouncement) {
+        val tmpList = dashBoardItems.value?.toMutableList()
+        tmpList?.remove(announcement)
+        dashBoardItems.value = tmpList
     }
 }
 

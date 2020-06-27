@@ -46,14 +46,6 @@ class DashBoardAnnouncementDb(
     val order: Int
 )
 
-@Entity(tableName = "creditCard")
-data class DashBoardCreditCardDb(
-    @PrimaryKey val id: String,
-    val cardNumber: String,
-    val balance: String,
-    val order: Int
-)
-
 @Entity(tableName = "promo")
 data class DashBoardPromoDb(
     @PrimaryKey val id: String,
