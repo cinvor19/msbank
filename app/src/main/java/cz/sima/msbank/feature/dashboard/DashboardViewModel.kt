@@ -91,8 +91,8 @@ class DashboardViewModel(private val dashBoardRepository: DashBoardRepository) :
         showTodoToast.publish()
     }
 
-    fun onAccountPayClick() {
-        showTodoToast.publish()
+    fun onAccountPayClick(dashBoardAccount: DashBoardAccount) {
+        navigate(R.id.action_navigation_dashboard_to_paymentFragment)
     }
 
     fun onAccountQrClick() {

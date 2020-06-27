@@ -62,7 +62,7 @@
                 android:id="@+id/button_pay"
                 style="@style/dashboard_account_button"
                 android:drawableTop="@drawable/ic_money_36dp"
-                android:onClick="@{()->vm.onAccountPayClick()}"
+                android:onClick="@{()->vm.onAccountPayClick(item)}"
                 android:text="@string/dashboard_account_button_pay"
                 app:layout_constraintEnd_toStartOf="@+id/button_qr"
                 app:layout_constraintStart_toStartOf="parent"

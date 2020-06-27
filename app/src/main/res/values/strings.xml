@@ -24,4 +24,15 @@
     <string name="dashboard_account_button_info">Info</string>
     <string name="dashboard_account_button_settings">Settings</string>
 
+    <!-- Payment -->
+    <string name="payment_from_account">Z účtu</string>
+    <string name="payment_variable_symbol">Variabilní symbol</string>
+    <string name="payment_specific_symbol">Specifický symbol</string>
+    <string name="payment_constant_symbol">Konstantní symbol</string>
+    <string name="payment_message_for_me">Zpráva pro mě</string>
+    <string name="payment_message_for_receiver">Zpráva pro příjemce</string>
+    <string name="payment_date">Datum splatnosti</string>
+    <string name="payment_pay">Zaplatit</string>
+
+
 </resources>
