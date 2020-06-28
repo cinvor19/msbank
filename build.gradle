@@ -16,6 +16,8 @@ buildscript {
     ext.rx_android_version = '2.1.0'
     ext.lottie_version = '3.4.1'
     ext.room_version = '2.2.5'
+    ext.rx_bindings_version = '2.1.1'
+
 
     repositories {
         google()

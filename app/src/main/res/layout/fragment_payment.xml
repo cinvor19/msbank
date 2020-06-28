@@ -109,11 +109,11 @@
                         android:layout_marginBottom="@dimen/margin_material_base_half"
                         android:cursorVisible="false"
                         android:editable="false"
-                        android:foreground="?attr/selectableItemBackground"
                         android:focusable="false"
-                        android:onClick="@{()->vm.onPaymentDateClicked()}"
                         android:focusableInTouchMode="false"
+                        android:foreground="?attr/selectableItemBackground"
                         android:hint="@string/payment_date"
+                        android:onClick="@{()->vm.onPaymentDateClicked()}"
                         app:timestamp="@{vm.paymentVmo.date}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -237,6 +237,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="@{vm.isValid}"
                 android:onClick="@{()-> vm.onPayClicked()}"
                 android:text="@string/payment_pay" />
 
