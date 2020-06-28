@@ -62,7 +62,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:lines="1"
-                        android:onClick="@{()->vm.onPaymentDateClicked()}"
                         android:text="@={vm.paymentVmo.toAccount}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -87,7 +86,6 @@
                         android:inputType="text"
                         android:lines="1"
                         android:nextFocusForward="@id/tiev_variable"
-                        android:onClick="@{()->vm.onPaymentDateClicked()}"
                         android:text="@={vm.paymentVmo.amount}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +132,7 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/payment_date"
                         android:onClick="@{()->vm.onPaymentDateClicked()}"
-                        android:text="@={vm.paymentVmo.date}" />
+                        android:text="@{vm.paymentVmo.date.toString()}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

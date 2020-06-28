@@ -10,7 +10,7 @@ class PaymentVmo {
     val fromAccount: MutableLiveData<String> = MutableLiveData()
     val toAccount: MutableLiveData<String> = MutableLiveData()
     val amount: MutableLiveData<String> = MutableLiveData()
-    val date: MutableLiveData<String> = MutableLiveData()
+    val date: MutableLiveData<Long> = MutableLiveData()
     val variableSymbol: MutableLiveData<String> = MutableLiveData()
     val specificSymbol: MutableLiveData<String> = MutableLiveData()
     val constantSymbol: MutableLiveData<String> = MutableLiveData()
@@ -29,7 +29,7 @@ class PaymentVmo {
             messageForMe,
             messageForReceiver
         ).map {
-            Log.d("VMO", it.value ?: "Empty")
+            Log.d("VMO", it.value.toString())
         }
     }
 }

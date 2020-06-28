@@ -12,6 +12,7 @@ import cz.sima.msbank.feature.cards.CardsViewModel
 import cz.sima.msbank.feature.dashboard.DashBoardRepository
 import cz.sima.msbank.feature.dashboard.DashboardViewModel
 import cz.sima.msbank.feature.payment.PaymentViewModel
+import cz.sima.msbank.feature.payment.PaymentVmo
 import cz.sima.msbank.feature.pin.PinRepository
 import cz.sima.msbank.feature.pin.PinViewModel
 import cz.sima.msbank.feature.settings.SettingsViewModel
@@ -35,7 +36,7 @@ val viewModelModule = module {
     viewModel { CardsViewModel() }
     viewModel { SettingsViewModel() }
     viewModel { PinViewModel(get()) }
-    viewModel { PaymentViewModel() }
+    viewModel { PaymentViewModel(get()) }
 }
 
 val repositoryModule = module {
@@ -59,6 +60,10 @@ val apiModule = module {
 
     // API
     single { provideApi(get(), ApiService::class.java) }
+}
+
+val vmoModule = module {
+    single { PaymentVmo() }
 }
 
 private fun provideOkHttpClient(context: Context): OkHttpClient {
@@ -90,4 +95,4 @@ private fun <T> provideApi(retrofit: Retrofit, cls: Class<T>): T {
     return retrofit.create(cls)
 }
 
-val allModules = listOf(viewModelModule, repositoryModule, apiModule)
+val allModules = listOf(viewModelModule, repositoryModule, apiModule, vmoModule)
