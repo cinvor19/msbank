@@ -90,24 +90,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Dummy item so date have same border as others-->
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/til_payment_date"
-                    app:layout_constraintEnd_toEndOf="@+id/til_payment_date"
-                    app:layout_constraintStart_toStartOf="@+id/til_payment_date"
-                    app:layout_constraintTop_toTopOf="@+id/til_payment_date">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_material_base_half"
-                        android:editable="false" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_payment_date"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -125,14 +107,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_material_base_half"
-                        android:background="?attr/selectableItemBackground"
                         android:cursorVisible="false"
                         android:editable="false"
+                        android:foreground="?attr/selectableItemBackground"
                         android:focusable="false"
+                        android:onClick="@{()->vm.onPaymentDateClicked()}"
                         android:focusableInTouchMode="false"
                         android:hint="@string/payment_date"
-                        android:onClick="@{()->vm.onPaymentDateClicked()}"
-                        android:text="@{vm.paymentVmo.date.toString()}" />
+                        app:timestamp="@{vm.paymentVmo.date}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
