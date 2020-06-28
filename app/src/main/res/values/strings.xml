@@ -6,6 +6,8 @@
     <string name="confirm">Confirm</string>
     <string name="continue_string">Continue</string>
 
+    <string name="currency">Kč</string>
+
     <!-- Pin -->
     <string name="loading_view_default_error">Unexpected error occurred, sorry :).</string>
     <string name="loading_view_default_reload">Try again</string>
@@ -26,6 +28,8 @@
 
     <!-- Payment -->
     <string name="payment_from_account">Z účtu</string>
+    <string name="payment_to_account">Na účet</string>
+    <string name="payment_amount">Částka</string>
     <string name="payment_variable_symbol">Variabilní symbol</string>
     <string name="payment_specific_symbol">Specifický symbol</string>
     <string name="payment_constant_symbol">Konstantní symbol</string>

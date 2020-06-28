@@ -16,132 +16,249 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_material_base">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_from_account"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_material_base_half"
-                    android:editable="false"
-                    android:hint="@string/payment_from_account" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_payment_date"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:endIconDrawable="@drawable/ic_calendar_24dp"
-                app:endIconMode="custom"
-                app:endIconTint="@color/colorPrimary">
+                android:padding="@dimen/margin_material_base">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tiet_payment_date"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_from_account"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_material_base_half"
-                    android:background="?attr/selectableItemBackground"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/payment_date"
-                    android:onClick="@{()->vm.onPaymentDateClicked()}" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <AutoCompleteTextView
+                        android:id="@+id/actv_from_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:editable="false"
+                        android:hint="@string/payment_from_account"
+                        android:text="@={vm.paymentVmo.fromAccount}" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_to_account"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_material_base_half"
-                    android:hint="@string/payment_variable_symbol"
-                    android:inputType="number"
-                    android:lines="1"
-                    android:imeOptions="actionNext" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_from_account">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_to_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:hint="@string/payment_to_account"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:onClick="@{()->vm.onPaymentDateClicked()}"
+                        android:text="@={vm.paymentVmo.toAccount}" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_amount"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_material_base_half"
-                    android:hint="@string/payment_specific_symbol"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:lines="1" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_to_account"
+                    app:suffixText="@string/currency">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:hint="@string/payment_amount"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:nextFocusForward="@id/tiev_variable"
+                        android:onClick="@{()->vm.onPaymentDateClicked()}"
+                        android:text="@={vm.paymentVmo.amount}" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <!-- Dummy item so date have same border as others-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/til_payment_date"
+                    app:layout_constraintEnd_toEndOf="@+id/til_payment_date"
+                    app:layout_constraintStart_toStartOf="@+id/til_payment_date"
+                    app:layout_constraintTop_toTopOf="@+id/til_payment_date">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:editable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_payment_date"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_material_base_half"
-                    android:hint="@string/payment_constant_symbol"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:lines="1" />
+                    app:endIconDrawable="@drawable/ic_calendar_24dp"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_amount">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_payment_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:background="?attr/selectableItemBackground"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/payment_date"
+                        android:onClick="@{()->vm.onPaymentDateClicked()}"
+                        android:text="@={vm.paymentVmo.date}" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_variable"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_material_base_half"
-                    android:hint="@string/payment_message_for_me"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:lines="1" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_payment_date">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiev_variable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:hint="@string/payment_variable_symbol"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:nextFocusForward="@id/tiet_specific"
+                        android:text="@={vm.paymentVmo.variableSymbol}" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_specific"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_material_base_half"
-                    android:hint="@string/payment_message_for_receiver"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:lines="1" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_variable">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_specific"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:hint="@string/payment_specific_symbol"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:nextFocusForward="@id/tiet_constant"
+                        android:text="@={vm.paymentVmo.specificSymbol}" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:text="@string/payment_pay"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_constant"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_specific">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_constant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:hint="@string/payment_constant_symbol"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:nextFocusForward="@id/tiet_message_for_me"
+                        android:text="@={vm.paymentVmo.constantSymbol}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_message_for_me"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_constant">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_message_for_me"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:hint="@string/payment_message_for_me"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:nextFocusForward="@id/tiet_message_receiver"
+                        android:text="@={vm.paymentVmo.messageForMe}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_message_receiver"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_message_for_me">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_message_receiver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_material_base_half"
+                        android:hint="@string/payment_message_for_receiver"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:text="@={vm.paymentVmo.messageForReceiver}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:onClick="@{()-> vm.onPayClicked()}"
-                android:layout_height="wrap_content"/>
+                android:text="@string/payment_pay" />
 
         </LinearLayout>
 

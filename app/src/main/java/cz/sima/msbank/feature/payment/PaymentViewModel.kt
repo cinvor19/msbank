@@ -7,11 +7,13 @@ import cz.sima.msbank.base.BaseViewModel
  */
 class PaymentViewModel : BaseViewModel() {
 
+    val paymentVmo = PaymentVmo()
+
     fun onPaymentDateClicked() {
         showTodoToast.publish()
     }
 
     fun onPayClicked() {
-        showTodoToast.publish()
+        paymentVmo.print()
     }
 }
