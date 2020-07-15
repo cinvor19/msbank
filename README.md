@@ -7,8 +7,14 @@ welcome in the repository for my sample project (Bank application) that was crea
 2. To explore and play with new technologies and approaches
 3. To start a solo project from scratch (in the past most of the time I worked on projects that were already configured and all base logic was taken care of), this is an opportunuty for me to prepare this logic by myself.
 
+## Current features
+* PIN screen (Accept PIN 1234)
+* Main screen with bottom navigation
+* Dashboard of accounts and transactions (fetch data from API and combining with fetch data in DB)
+* Payment screen (WIP)
+
 ## Technologies/approaches/ideas/features 
-Bellow you can find quite an extensive list of features and ideas which I would like to try. Some of them are already prepared in the application, some of them are just ideas for a backlog.
+Bellow you can find quite an extensive list of features and ideas which I would like to try. Some of them are already in the application, some of them are just ideas for a backlog.
 
 * Kotlin
 * MVVM
@@ -19,7 +25,7 @@ Bellow you can find quite an extensive list of features and ideas which I would 
 * Navigation components with Safe Args
 * Tests
 * Lottie animations
-* Custom mock rest API (https://beeceptor.com/)
+* Custom mock rest API (https://beeceptor.com/ or https://app.apiary.io/)
 * Rx and Corutines
 * DiffUtil.ItemCallback for recycler adapters
 * Multiple modules
