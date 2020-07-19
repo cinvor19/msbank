@@ -12,6 +12,7 @@ welcome in the repository for my sample project (Bank application) that was crea
 * Main screen with bottom navigation
 * Dashboard of accounts and transactions (fetch data from API and combining with fetch data in DB)
 * Payment screen (WIP)
+* Couple of tests for Validation functions
 
 ## Technologies/approaches/ideas/features 
 Bellow you can find quite an extensive list of features and ideas which I would like to try. Some of them are already in the application, some of them are just ideas for a backlog.
