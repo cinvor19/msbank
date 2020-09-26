@@ -4,19 +4,24 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.database.FirebaseDatabase
 import cz.sima.msbank.R
 import cz.sima.msbank.base.BaseViewModel
 import cz.sima.msbank.customview.loadingview.Loading
 import cz.sima.msbank.customview.loadingview.LoadingState
 import cz.sima.msbank.customview.loadingview.Normal
 import cz.sima.msbank.event.AnySingleLiveEvent
+import cz.sima.msbank.shared.FirebaseRepository
 import cz.sima.msbank.utils.Constants
 import cz.sima.msbank.utils.extensions.cutLastChar
 
 /**
  * Created by Michal Šíma on 13.06.2020.
  */
-class PinViewModel(private val pinRepository: PinRepository) : BaseViewModel() {
+class PinViewModel(
+    private val pinRepository: PinRepository,
+    private val firebaseRepository: FirebaseRepository
+) : BaseViewModel() {
 
     val pin: MutableLiveData<String> = MutableLiveData("")
 
@@ -44,6 +49,7 @@ class PinViewModel(private val pinRepository: PinRepository) : BaseViewModel() {
     private fun checkPinCompleteness() {
         if (pin.value?.length == Constants.PIN_LENGTH) {
             doLoginRequest()
+            firebaseRepository.writeDummyValue(pin.value ?: "")
         }
     }
 

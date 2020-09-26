@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "898200860568",
+    "firebase_url": "https://ms-bank-258bd.firebaseio.com",
+    "project_id": "ms-bank-258bd",
+    "storage_bucket": "ms-bank-258bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898200860568:android:47608d0a9535df923f1ded",
+        "android_client_info": {
+          "package_name": "cz.sima.msbank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898200860568-9r4aq1ih785u95uk6skma0bnba7m1f3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdiZCZ20BBYER4lZJ-hJmBdcTb3UpwirE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898200860568-9r4aq1ih785u95uk6skma0bnba7m1f3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
