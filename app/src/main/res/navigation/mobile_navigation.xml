@@ -20,8 +20,8 @@
     <fragment
         android:id="@+id/navigation_pin"
         android:name="cz.sima.msbank.feature.pin.PinFragment"
-        tools:layout="@layout/fragment_pin"
-        android:label="PinFragment">
+        android:label="PinFragment"
+        tools:layout="@layout/fragment_pin">
         <action
             android:id="@+id/action_pinFragment_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard"
@@ -33,7 +33,12 @@
         android:id="@+id/navigation_settings"
         android:name="cz.sima.msbank.feature.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings">
+
+        <action
+            android:id="@+id/action_navigation_settings_to_supportChatFragment"
+            app:destination="@id/supportChatFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -55,5 +60,10 @@
         android:name="cz.sima.msbank.feature.payment.PaymentFragment"
         android:label="PaymentFragment"
         tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/supportChatFragment"
+        android:name="cz.sima.msbank.feature.supportchat.SupportChatFragment"
+        android:label="SupportChatFragment"
+        tools:layout="@layout/fragment_support_chat" />
 
 </navigation>
