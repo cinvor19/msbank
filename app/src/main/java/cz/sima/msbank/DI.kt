@@ -18,7 +18,7 @@ import cz.sima.msbank.feature.pin.PinRepository
 import cz.sima.msbank.feature.pin.PinViewModel
 import cz.sima.msbank.feature.settings.SettingsViewModel
 import cz.sima.msbank.feature.splash.SplashScreenViewModel
-import cz.sima.msbank.feature.supportchat.SupportChatViewModel
+import cz.sima.msbank.feature.supportchatthreads.SupportChatThreadsViewModel
 import cz.sima.msbank.shared.FirebaseRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,7 +38,7 @@ val viewModelModule = module {
     viewModel { DashboardViewModel(get()) }
     viewModel { CardsViewModel() }
     viewModel { SettingsViewModel() }
-    viewModel { SupportChatViewModel() }
+    viewModel { SupportChatThreadsViewModel() }
     viewModel { PinViewModel(get(), get()) }
     viewModel { PaymentViewModel(get()) }
 }

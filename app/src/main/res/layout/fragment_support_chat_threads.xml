@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="cz.sima.msbank.feature.supportchat.SupportChatViewModel" />
+            type="cz.sima.msbank.feature.supportchatthreads.SupportChatThreadsViewModel" />
 
     </data>
 

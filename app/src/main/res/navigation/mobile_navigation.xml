@@ -62,8 +62,8 @@
         tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/supportChatFragment"
-        android:name="cz.sima.msbank.feature.supportchat.SupportChatFragment"
+        android:name="cz.sima.msbank.feature.supportchatthreads.SupportChatThreadsFragment"
         android:label="SupportChatFragment"
-        tools:layout="@layout/fragment_support_chat" />
+        tools:layout="@layout/fragment_support_chat_threads" />
 
 </navigation>
